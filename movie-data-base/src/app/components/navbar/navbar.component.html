@@ -1,0 +1,64 @@
+<!-- <nav class="navbar_maincontainer">
+  <div class="navbar_routingpath">
+    <p>SVMD</p>
+    <ul class="navbar_linkssection">
+      <li>
+        <a routerLink="/home">Home</a>
+      </li>
+      <li>
+        <a routerLink="/movie">Movie</a>
+      </li>
+      <li>
+        <a routerLink="/tv">TV Show</a>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <a routerLink="/search">search</a>
+    <button class="btn btn-info">login</button>
+  </div>
+</nav> -->
+<nav class="navbar navbar-expand-lg navbar-light navbar_mainContainer">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home"></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" routerLink="/home"
+            >SVMD<i class="fa-brands fa-joomla"></i
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" routerLink="/home"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/movie">Movie</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/tv">Tv Show</a>
+        </li>
+      </ul>
+      <div class="d-flex gap-2">
+        
+        <a routerLink="/search" class="btn btn-outline-success" >Search</a>
+        <button class="btn btn-success">
+          login <i class="fa-solid fa-user"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

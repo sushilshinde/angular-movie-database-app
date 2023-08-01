@@ -1,0 +1,36 @@
+.home-display-containers {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 25px;
+  gap: 25px;
+}
+.home-card-container {
+  width: 180px;
+}
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.movie-imageContainer {
+  width: 180px;
+  height: 225px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.movie-card-body {
+  width: 175px;
+}
+
+.movie-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 8px 0;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.movie-date-title {
+  color: white;
+  font-size: 15px;
+}

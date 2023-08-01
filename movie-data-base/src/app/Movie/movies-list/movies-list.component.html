@@ -1,0 +1,14 @@
+<div class="home-display-containers">
+  <div class="home-card-container" *ngFor="let movie of moviedata">
+    <img
+      class="movie-imageContainer"
+      [src]="movie?.poster_path"
+      alt="Card image cap"
+    />
+
+    <div class="movie-card-body">
+      <h5 class="movie-card-title">{{ movie?.title }}</h5>
+      <p class="movie-date-title">{{ movie?.release_date | date }}</p>
+    </div>
+  </div>
+</div>
