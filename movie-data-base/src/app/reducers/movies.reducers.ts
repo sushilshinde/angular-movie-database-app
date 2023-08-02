@@ -1,31 +1,25 @@
-import { createReducer } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
+import { addReview } from '../actions/movies.actions';
+import { MovieModel } from '../models/movie.model';
 import data from '../movies/data.json';
 
-export interface CreditModel {
-  name: string;
-  profile_path: string;
-}
+const initialMovies = data.movies.map(movie => ({ ...movie, ratings: [ { name: 'John Doe', rating: 4, comment: 'It was a good movie!', date: Date.now().toString() } ] }));
 
-export interface MovieModel {
-  adult: boolean;
-  backdrop_path: string;
-  id: number;
-  title: string;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  poster_path: string;
-  media_type: string;
-  release_date: string;
-  details: {
-    runtime: number;
-    tagline: string;
-  };
-  credits: CreditModel[];
-}
-
-const initialState: { movies: MovieModel[] } = {
-  movies: data.movies,
+const initialState: { movies: MovieModel[] }  = {
+  movies: initialMovies,
 };
 
-export const moviesReducer = createReducer(initialState);
+export const moviesReducer = createReducer(initialState, on(addReview, (state, action) => {
+  let newMovies = state.movies.map(movie => {
+    if(movie.id === action.movieId) {
+      let newReviews = [...movie.ratings, action.review]
+      return { ...movie, ratings: newReviews };
+    }
+    return movie
+  })
+
+  return {
+    ...state,
+    movies: newMovies
+  }
+}));

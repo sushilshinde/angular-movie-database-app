@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CreditModel } from 'src/app/reducers/movies.reducers';
+import { CreditModel } from 'src/app/models/credit.model';
 
 @Component({
   selector: 'app-movie-actor',

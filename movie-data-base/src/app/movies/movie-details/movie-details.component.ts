@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
-import { CreditModel, MovieModel } from 'src/app/reducers/movies.reducers';
+import { CreditModel } from 'src/app/models/credit.model';
+import { MovieModel } from 'src/app/models/movie.model';
+import { DateFormatService } from 'src/app/services/date-format.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -14,31 +16,36 @@ export class MovieDetailsComponent implements OnInit {
   movie?: MovieModel;
   expandActors: boolean = false;
   movieActors?: CreditModel[];
+  releaseDate!: string;
   constructor(
     private store: Store<{ movies: { movies: MovieModel[] } }>,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private dateService: DateFormatService
   ) {}
 
   ngOnInit(): void {
+    
     const id = +this.route.snapshot.params['id'];
-
+    
     this.store
-      .select('movies')
-      .pipe(
-        map((movieState) => {
-          return movieState.movies.find((movie, index) => {
-            return index === id;
-          });
-        })
+    .select('movies')
+    .pipe(
+      map((movieState) => {
+        return movieState.movies.find((movie, index) => {
+          return index === id;
+        });
+      })
       )
       .subscribe((movie) => {
+        console.log('movie detail subscribed')
         if (!movie) {
           this.router.navigate(['/movies']);
           console.log('movie not found!');
         }
         this.movie = movie;
         this.movieActors = movie?.credits.slice(0, 4);
+        this.releaseDate = this.dateService.fomatDate(this.movie!.release_date)
         console.log(this.movie);
       });
   }

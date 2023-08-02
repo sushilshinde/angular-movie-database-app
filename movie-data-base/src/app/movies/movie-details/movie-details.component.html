@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" style="background-color: #a0c4da">
   <div
     class="card d-flex flex-row detail-container"
     style="position: relative; background-color: #a0c4da"
@@ -31,18 +31,17 @@
       </div>
       <hr />
       <h6>Released Date:</h6>
-      {{ movie?.release_date }}
+      {{ releaseDate }}
       <hr />
       <h6>Duration:</h6>
       {{ movie?.details?.runtime }} mins
       <hr />
-      <h6>Overview:</h6>
+      <h6>Storyline:</h6>
       <p class="card-text">
         {{ movie?.overview }}
       </p>
-      <b>Actors:</b>
-      <br />
       <hr />
+      <h6>Cast:</h6>
       <div
         class="d-flex justify-content-start flex-wrap"
         *ngIf="movieActors && movieActors.length > 0"
@@ -55,6 +54,15 @@
       <span (click)="expandActorsSection()" class="expand-icon">
         <mat-icon>{{ expandActors ? "expand_less" : "expand_more" }}</mat-icon>
       </span>
+    </div>
+  </div>
+  <div class="d-flex flex-row m-5">
+    <app-movie-rating-form [movieId]="movie!.id" class="container-fluid"></app-movie-rating-form>
+    <div class="container-fluid" *ngIf="movie?.ratings">
+      <app-movie-review
+        *ngFor="let review of movie?.ratings"
+        [review]="review"
+      ></app-movie-review>
     </div>
   </div>
 </div>
