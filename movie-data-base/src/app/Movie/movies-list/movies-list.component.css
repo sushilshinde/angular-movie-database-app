@@ -1,3 +1,9 @@
+.movies_title{
+  color: white;
+  font-size: 35px;
+  font-weight: 600;
+  padding: 20px;
+}
 .home-display-containers {
   display: flex;
   flex-wrap: wrap;
@@ -6,10 +12,7 @@
 }
 .home-card-container {
   width: 180px;
-}
-.card {
-  border-radius: 8px;
-  overflow: hidden;
+ 
 }
 
 .movie-imageContainer {
@@ -20,7 +23,7 @@
 }
 
 .movie-card-body {
-  width: 175px;
+  width: 180px;
 }
 
 .movie-card-title {

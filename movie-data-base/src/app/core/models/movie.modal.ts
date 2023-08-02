@@ -5,6 +5,7 @@ export interface Movie {
   title: string;
   original_language: string;
   original_title: string;
+  rating: number;
   overview: string;
   poster_path: string;
   media_type: string;

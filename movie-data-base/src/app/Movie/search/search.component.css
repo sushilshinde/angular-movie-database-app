@@ -1,0 +1,110 @@
+.search_container_searchbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+}
+.search_inputContainer {
+  background-color: white;
+  display: flex;
+  width: 90%;
+  margin: 10px;
+  padding: 4px;
+  border-radius: 40px;
+}
+.sreach_input {
+  border-radius: 40px;
+}
+.search_searchButton {
+  width: 10%;
+  height: 40px;
+  padding: 10px;
+  align-self: center;
+}
+.search_icon {
+  width: 70px;
+  height: 30px;
+  align-self: center;
+}
+/* search results display */
+.search_display_container {
+  width: 100%;
+  display: flex;
+}
+.search_sort_optionsontainer {
+  width: 20%;
+  padding: 30px;
+}
+.search_sort_heading {
+  font-size: 24px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: white;
+  font-weight: 600px;
+}
+
+.search_resuluts_container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 20px;
+}
+.search_resulut_card {
+  display: flex;
+  height: 158px;
+  border-radius: 10px;
+  gap: 25px;
+  width: 100%;
+  padding: 2px;
+  box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.2),
+    0 10px 15px 1px rgba(0, 0, 0, 0.14), 0 5px 25px 4px rgba(0, 0, 0, 0.12);
+
+  background-color: white;
+}
+.serach_result_image {
+  width: 94px;
+  height: 152px;
+  border-radius: 10px;
+  background-size: cover;
+}
+.sreach_res_textContainer {
+  height: 152px;
+  width: 100%;
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sreach_res_titles {
+  height: 43px;
+  font-size: 16px;
+  font-family: "Source Sans Pro", Arial, san-serfi;
+}
+.search_movie_date {
+  height: 20px;
+
+  color: #999999;
+}
+.sreach_movie_title {
+  color: black;
+  height: 23px;
+}
+.search_res_overview {
+  height: 40px;
+  font-size: 14px;
+  text-overflow: ellipsis; 
+  max-height: 41px; 
+}
+
+
+.search_nodata_container{
+    width: 80%;
+
+}
+.search_nodata_message{
+    font-size: 24px;
+    color: white;
+    font-weight: 200;
+}

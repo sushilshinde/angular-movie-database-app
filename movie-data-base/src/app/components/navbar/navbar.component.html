@@ -1,25 +1,6 @@
-<!-- <nav class="navbar_maincontainer">
-  <div class="navbar_routingpath">
-    <p>SVMD</p>
-    <ul class="navbar_linkssection">
-      <li>
-        <a routerLink="/home">Home</a>
-      </li>
-      <li>
-        <a routerLink="/movie">Movie</a>
-      </li>
-      <li>
-        <a routerLink="/tv">TV Show</a>
-      </li>
-    </ul>
-  </div>
 
-  <div>
-    <a routerLink="/search">search</a>
-    <button class="btn btn-info">login</button>
-  </div>
-</nav> -->
-<nav class="navbar navbar-expand-lg navbar-light navbar_mainContainer">
+  
+<nav class="navbar  navbar-expand-lg  navbar-light navbar_mainContainer">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/home"></a>
     <button
@@ -36,20 +17,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link text-white" aria-current="page" routerLink="/home"
-            >SVMD<i class="fa-brands fa-joomla"></i
-          ></a>
+          <a class="nav-link text-white" aria-current="page"  routerLink="/home"
+            >SVMD<i class="fa-brands fa-joomla"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" aria-current="page" routerLink="/home"
+          <a class="nav-link text-white" routerLinkActive="activeOption" aria-current="page" routerLink="/home"
             >Home</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" routerLink="/movie">Movie</a>
+          <a class="nav-link text-white"  routerLinkActive="activeOption" routerLink="/movie">Movie</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" routerLink="/tv">Tv Show</a>
+          <a class="nav-link text-white" routerLinkActive="activeOption" routerLink="/tv">Tv Show</a>
         </li>
       </ul>
       <div class="d-flex gap-2">

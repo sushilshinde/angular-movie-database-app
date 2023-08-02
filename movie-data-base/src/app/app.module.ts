@@ -11,6 +11,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { TvShowsComponent } from './TvShows/TvShows.component';
 import { HomeComponent } from './components/Home/Home.component';
 import { SearchComponent } from './Movie/search/search.component';
+import { MovieSortPipe } from './shared/pipes/MovieSort.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,13 +23,17 @@ import { SearchComponent } from './Movie/search/search.component';
     MoviesListComponent,
     TvShowsComponent,
     HomeComponent,
-    SearchComponent
+    SearchComponent,
+    MovieSortPipe
+   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot(),
     HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   margin: 25px;
+
   gap: 25px;
 }
 .home-card-container {
@@ -18,6 +19,13 @@
   object-fit: cover;
   border-radius: 10px;
 }
+.home_trendingTitile{
+  margin: 0px 40px 0px 0px;
+  color: red;
+  font-size: 33px;
+  font-family: "Source Sans Pro",Arial, Helvetica, sans-serif;
+  
+}
 
 .movie-card-body {
   width: 175px;
@@ -33,4 +41,69 @@
 .movie-date-title {
   color: white;
   font-size: 15px;
+}
+
+.banner_mainContainer {
+  width: 100%;
+  height: 360px;
+  background-color: white;
+  /* background-image: url("https://www.themoviedb.org/t/p/w880_and_h600_multi_faces_filter(duotone,00192f,00baff)/xcXALwBjdHIjrESpGVhghqj8fGT.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; */
+  display: flex;
+flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+    to right,
+    rgb(117, 117, 219),
+    rgb(232, 147, 107),
+    rgb(143, 209, 143),
+    rgb(233, 233, 89)
+  );
+}
+.banner_title_container {
+  align-self: center;
+
+}
+.banner_welcome {
+  color: white;
+  font-size: 45px;
+  font-family: "Source Sans Pro",Arial,sans-serif;
+  font-weight:600;
+}
+.banner_message {
+  font-size: 32px;
+  font-family: "Source Sans Pro",Arial,sans-serif;
+  color: #ffffff;
+
+}
+.banner_inputFiled{
+  display: flex;
+  gap: 10px;
+}
+
+
+/* sort option */
+.home_sort_container{
+  display: flex;
+  justify-content: space-between;
+  
+
+}
+
+.home_sort_optionsontainer{
+  display: flex;
+justify-content: center;
+align-items: center;
+gap: 20px;
+  
+
+}
+.home_sort_heading{
+  font-size: 26px;
+  color: white;
+  padding-top: 8px;
+  font-family: sans-serif;
+
 }

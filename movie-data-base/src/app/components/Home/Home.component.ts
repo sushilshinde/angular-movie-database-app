@@ -9,6 +9,7 @@ import { MovieService } from 'src/app/core/services/movie.service';
 })
 export class HomeComponent implements OnInit {
   allmovies: Movie[] = [];
+  sortMethod: string = 'Title(A-Z)';
 
   constructor(private movieService: MovieService) {}
 
@@ -16,10 +17,23 @@ export class HomeComponent implements OnInit {
     this.movieService.getMovies().subscribe({
       next: (data) => {
         this.allmovies = data.movies;
+       
       },
       error: (error) => {
         console.log(error);
       },
     });
+    
+
+   
   }
+
+  sortMovieOption(event: any) {
+    //after select the sort method save to method and passing the sortMovies
+    this.sortMethod = event.target.value;
+   
+  }
+
+ 
+ 
 }
