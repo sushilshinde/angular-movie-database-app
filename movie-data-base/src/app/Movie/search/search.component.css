@@ -108,3 +108,12 @@
     color: white;
     font-weight: 200;
 }
+.search_loading_container{
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  width: 80%;
+  color: white; 
+}

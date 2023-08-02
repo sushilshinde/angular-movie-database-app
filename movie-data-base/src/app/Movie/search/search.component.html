@@ -21,7 +21,7 @@
       <input
         class="form-control sreach_input mr-sm-2"
         type="text"
-        placeholder="Search The Movies,Tv,etc..."
+        placeholder="{{searchResult.length===0?' The Movies,Tv,etc...':SearchText}}"
         aria-label="Search"
         name="SearchText"
         [(ngModel)]="SearchText"
@@ -65,10 +65,14 @@
         </div>
       </div>
     </div>
-    <div class="search_nodata_container" *ngIf="searchResult.length === 0">
+    <div class="search_nodata_container" *ngIf="searchResult.length === 0 && !loading">
       <h1 class="search_nodata_message">
         There are no movies that matched your query.
       </h1>
+    </div>
+    <div *ngIf="loading" class="search_loading_container">
+      <p>loading...</p>
+
     </div>
   </div>
 </div>

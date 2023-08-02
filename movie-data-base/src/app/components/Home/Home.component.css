@@ -23,6 +23,8 @@
   margin: 0px 40px 0px 0px;
   color: red;
   font-size: 33px;
+  
+  padding: 20px;
   font-family: "Source Sans Pro",Arial, Helvetica, sans-serif;
   
 }
@@ -97,6 +99,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 gap: 20px;
+padding: 10px;
   
 
 }
@@ -106,4 +109,8 @@ gap: 20px;
   padding-top: 8px;
   font-family: sans-serif;
 
+}
+.custom-select{
+  height: 32px;
+  font-size: 16px;
 }
