@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../core/services/movie.service';
 import { Movie } from '../core/models/movie.modal';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-TvShows',
@@ -10,7 +11,7 @@ import { Movie } from '../core/models/movie.modal';
 export class TvShowsComponent implements OnInit {
   tvdata: Movie[] = [];
 
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService, private router: Router) {}
 
   ngOnInit() {
     this.movieService.getMovies().subscribe({
@@ -21,5 +22,8 @@ export class TvShowsComponent implements OnInit {
         console.log(error);
       },
     });
+  }
+  gotoDetailPage(tvId: number) {
+    this.router.navigate(['/tv', tvId]);
   }
 }

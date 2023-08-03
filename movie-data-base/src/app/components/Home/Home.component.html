@@ -40,7 +40,11 @@
 </div>
 <!--movie display section-->
 <div class="home-display-containers">
-  <div class="home-card-container" *ngFor="let movie of allmovies | movieSort:sortMethod">
+  <div
+    class="home-card-container"
+    (click)="changeRouting(movie.id, movie.media_type)"
+    *ngFor="let movie of allmovies | movieSort : sortMethod"
+  >
     <img
       class="movie-imageContainer"
       [src]="movie?.poster_path"

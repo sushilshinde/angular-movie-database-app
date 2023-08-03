@@ -4,6 +4,7 @@ import { MovieService } from 'src/app/core/services/movie.service';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Movie } from 'src/app/core/models/movie.modal';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-movies-list',
   templateUrl: './movies-list.component.html',
@@ -14,7 +15,7 @@ export class MoviesListComponent implements OnInit {
   moviedata: Movie[] = [];
  
 
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService,private router:Router) {}
 
   ngOnInit() {
     this.movieService.getMovies().subscribe({
@@ -32,6 +33,10 @@ export class MoviesListComponent implements OnInit {
    
     
 
+    
+  }
+  gotoDetailPage(movieId:number){
+    this.router.navigate(['/movie',movieId])
     
   }
 }

@@ -1,3 +1,113 @@
-<p>
-  login works!
-</p>
+<!-- <div class="login_main_conatiner">
+  <h2 class="login_login_heading">Login To Your Account</h2>
+  <p class="login_featuresMessage">
+    In order to use the editing and rating capabilities of SVMD ,as well as get
+    personal recommendations you will need to login your account.if you do not
+    have an account,registering for an account is free and simple.
+    <a routerLink="'/signup">Click here</a>to get started
+  </p>
+  <form class="login_form_main_container" (ngSubmit)="login()">
+    <label class="login_label_container">
+      <span  class="login_label_name">Email</span>
+      <input  class="login_login_input" type="Email" [(ngModel)]="email" name="email" required />
+    </label>
+    <br />
+    <label class="login_label_container">
+      <span class="login_label_name">Password</span>
+      <input class="login_login_input" type="password" [(ngModel)]="password" name="password" required />
+    </label>
+    <br />
+    <div class="login_login_buttonSection">
+      <button class="btn btn-primary" type="submit">Login</button>
+      <a class="login_forget_message">Reset password</a>
+    </div>
+  </form>
+</div> -->
+
+<div class="login_main_conatiner">
+  <h2 class="login_login_heading">Login To Your Account</h2>
+  <p class="login_featuresMessage">
+    In order to use the editing and rating capabilities of SVMD, as well as get
+    personal recommendations, you will need to login to your account. If you do
+    not have an account, registering for an account is free and simple.
+    <a routerLink="/signup">Click here</a> to get started
+  </p>
+  <form
+    class="login_form_main_container"
+    [formGroup]="loginForm"
+    (ngSubmit)="login()"
+  >
+    <label class="login_label_container">
+      <span class="login_label_name">Email</span>
+      <input
+        [ngClass]="
+        loginForm.get('email')?.errors &&
+        (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)?'errorInput':'login_login_input'
+      " 
+        type="email"
+        formControlName="email"
+        required
+      />
+      <div
+        *ngIf="
+          loginForm.get('email')?.errors &&
+          (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)
+        "
+        class="login_email_error-message"
+      >
+        <div
+          class="errorMessage"
+          *ngIf="loginForm.get('email')?.hasError('required')"
+        >
+          *Email is required.
+        </div>
+        <div
+          class="errorMessage"
+          *ngIf="loginForm.get('email')?.hasError('email')"
+        >
+          *Invalid email format.
+        </div>
+      </div>
+    </label>
+    <br />
+    <label class="login_label_container">
+      <span class="login_label_name">Password</span>
+      <input
+        [ngClass]="loginForm.get('password')?.errors &&
+        (loginForm.get('password')?.dirty ||
+          loginForm.get('password')?.touched)?'errorInput':'login_login_input'"
+        type="password"
+        formControlName="password"
+        required
+      />
+      <div
+        *ngIf="
+          loginForm.get('password')?.errors &&
+          (loginForm.get('password')?.dirty ||
+            loginForm.get('password')?.touched)
+        " 
+      >
+        <div
+          class="errorMessage"
+          *ngIf="loginForm.get('password')?.hasError('required')"
+        >
+          *Password is required.
+        </div>
+      </div>
+    </label>
+    <br />
+    <div class="login_login_buttonSection">
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="!loginForm.valid"
+      >
+        Login
+      </button>
+      <a class="login_forget_message">Reset password</a>
+    </div>
+    <div class="errorMessage" *ngIf="ErrorMessage">
+      {{ ErrorMessage }}
+    </div>
+  </form>
+</div>
