@@ -34,7 +34,7 @@
           class="errorMessage"
           *ngIf="signupForm.get('username')?.hasError('required')"
         >
-          *Username is required.
+          * Username is required.
         </div>
       </div>
     </label>
@@ -52,18 +52,20 @@
         required
       />
       <div
-        class="errorMessage"
         *ngIf="
           signupForm.get('email')?.errors &&
           (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)
         "
         class="login_email_error-message"
       >
-        <div *ngIf="signupForm.get('email')?.hasError('required')">
-          Email is required.
+        <div
+          class="errorMessage"
+          *ngIf="signupForm.get('email')?.hasError('required')"
+        >
+          * Email is required.
         </div>
         <div *ngIf="signupForm.get('email')?.hasError('email')">
-          Invalid email format.
+          * Invalid email format.
         </div>
       </div>
     </label>
@@ -83,7 +85,6 @@
         required
       />
       <div
-        class="errorMessage"
         *ngIf="
           signupForm.get('password')?.errors &&
           (signupForm.get('password')?.dirty ||
@@ -91,8 +92,11 @@
         "
         class="error-message"
       >
-        <div *ngIf="signupForm.get('password')?.hasError('required')">
-          Password is required.
+        <div
+          class="errorMessage"
+          *ngIf="signupForm.get('password')?.hasError('required')"
+        >
+          * Password is required.
         </div>
       </div>
     </label>
@@ -105,7 +109,7 @@
       >
         Signup
       </button>
-      <button class="btn btn-outline-primary">cancle</button>
+      <a routerLink="/login" class="btn btn-outline-primary">cancle</a>
     </div>
   </form>
 </div>

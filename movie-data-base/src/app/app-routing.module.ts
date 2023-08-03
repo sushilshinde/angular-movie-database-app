@@ -8,6 +8,7 @@ import { SearchComponent } from './Movie/search/search.component';
 import { MovieDetailsComponent } from './Movie/movie-details/movie-details.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
+import { NofoundComponent } from './components/nofound/nofound.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: '**', component: NofoundComponent },
 ];
 
 @NgModule({
