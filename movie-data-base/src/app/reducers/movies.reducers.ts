@@ -5,8 +5,8 @@ import data from '../movies/data.json';
 
 const initialMovies = data.movies.map(movie => ({ ...movie, ratings: [ { name: 'John Doe', rating: 4, comment: 'It was a good movie!', date: Date.now().toString() } ] }));
 
-const initialState: { movies: MovieModel[] }  = {
-  movies: initialMovies,
+const initialState: { movies: MovieModel[]}  = {
+  movies: initialMovies
 };
 
 export const moviesReducer = createReducer(initialState, on(addReview, (state, action) => {

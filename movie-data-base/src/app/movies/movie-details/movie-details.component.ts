@@ -33,7 +33,7 @@ export class MovieDetailsComponent implements OnInit {
     .pipe(
       map((movieState) => {
         return movieState.movies.find((movie, index) => {
-          return index === id;
+          return movie.id === id;
         });
       })
       )

@@ -16,6 +16,7 @@ export interface MovieModel {
   details: {
     runtime: number;
     tagline: string;
+    genres: {id: number, name: string}[]
   };
   credits: CreditModel[];
 }

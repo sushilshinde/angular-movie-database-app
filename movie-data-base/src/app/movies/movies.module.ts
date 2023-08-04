@@ -1,8 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatChipsModule} from '@angular/material/chips';
+import {  MatGridListModule } from '@angular/material/grid-list'
 import { StoreModule } from '@ngrx/store';
 import { moviesReducer } from '../reducers/movies.reducers';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
@@ -15,6 +21,8 @@ import { MovieReviewComponent } from './movie-details/movie-review/movie-review.
 import { MovieRatingComponent } from './movie-details/movie-rating/movie-rating.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MovieRatingFormComponent } from './movie-details/movie-rating-form/movie-rating-form.component';
+import { CategoriesSelectModule } from './movie-categories/categories-select.module';
+import { CategoryListComponent } from './movie-categories/category-list/category-list.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +33,7 @@ import { MovieRatingFormComponent } from './movie-details/movie-rating-form/movi
     MovieReviewComponent,
     MovieRatingComponent,
     MovieRatingFormComponent,
+    CategoryListComponent
   ],
   imports: [
     RouterModule,
@@ -34,7 +43,14 @@ import { MovieRatingFormComponent } from './movie-details/movie-rating-form/movi
     MatIconModule,
     MatButtonModule,
     MatSnackBarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressBarModule,
+    MatTooltipModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    CategoriesSelectModule,
+    MatGridListModule,
+    MatChipsModule
   ],
 })
 export class MoviesModule {}

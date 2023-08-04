@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent],
@@ -14,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     StoreModule.forRoot({}),
     BrowserAnimationsModule,
+    HttpClientModule
   ],
   // providers: [],
   bootstrap: [AppComponent],

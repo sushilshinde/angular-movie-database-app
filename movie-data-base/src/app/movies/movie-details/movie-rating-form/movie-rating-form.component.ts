@@ -49,7 +49,5 @@ export class MovieRatingFormComponent implements OnInit {
     this.snackBar.open('You rated ' + this.rating + ' / ' + 5, '', {
       duration: 5000,
     });
-    this.rating = 1;
-    this.reviewForm.reset();
   }
 }
