@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
-import {CommonModule, NgForOf, NgIf} from '@angular/common';
+import {CommonModule, NgIf} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
@@ -10,7 +10,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 
 import data from '../../data.json';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const genresList = new Set<string>();
 data.movies.forEach(movie => {
@@ -35,35 +37,42 @@ data.movies.forEach(movie => {
     NgIf,
     MatDialogModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatIconModule,
+    MatTooltipModule
   ]
 })
 export class DialogOverviewExample implements OnInit{
   genre!: string;
   name!: string;
 
-  constructor(public dialog: MatDialog, private router: Router) {}
+  constructor(public dialog: MatDialog, private router: Router, private route: ActivatedRoute) {}
   ngOnInit(): void {
     
+  }
+
+  openGenreDialog() {
     const dialogRef = this.dialog.open(CategorySelectDialogComponent, {
       data: { genre: this.genre },
-      enterAnimationDuration: 1200,
-      exitAnimationDuration: 1200,
+      enterAnimationDuration: 1000,
+      exitAnimationDuration: 1000,
       height: '300px',
       width: '600px',
+      position: {
+        top: '0'
+      } 
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.genre = result;
 
       if(this.genre) {
-        this.router.navigate(['movies','category-list'], { state: { genre: this.genre }});
+        this.router.navigate(['movies','category-list'], { state: { genre: this.genre }, onSameUrlNavigation: 'reload'});
         console.log(this.genre)
-      }else {
-        this.router.navigate(['/movies']);
       }
     });
   }
+  
 }
 
 
@@ -85,18 +94,15 @@ export class CategorySelectDialogComponent implements OnInit{
   constructor(
     public dialogRef: MatDialogRef<CategorySelectDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.genres = [...genresList.values()].map(genre => ({ value: genre, viewValue: genre.toUpperCase() }));
-    console.log(this.genres)
 
   }
 
   onNoClick(): void {
     this.dialogRef.close();
-    this.router.navigate(['/movies']);
   }
 
 }
