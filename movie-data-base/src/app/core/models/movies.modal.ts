@@ -1,3 +1,4 @@
+//creating the movie model interface present we are using json data 
 export interface Movie {
   adult: boolean;
   backdrop_path: string;

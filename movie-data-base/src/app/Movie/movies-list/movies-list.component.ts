@@ -27,7 +27,9 @@ export class MoviesListComponent implements OnInit {
       },
     });
   }
+  //detail page handler
   gotoDetailPage(movieId: number) {
+    //passing the movie to routing path and get with params and get method for the partical movie details
     this.router.navigate(['/movie', movieId]);
   }
 }

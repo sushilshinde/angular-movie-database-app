@@ -15,8 +15,10 @@ export class HomeComponent implements OnInit {
   constructor(private movieService: MovieMyService, private router: Router) {}
 
   ngOnInit() {
+    // Load all movies when the component initializes
     this.movieService.getMovies().subscribe({
       next: (data) => {
+        // Store the fetched movies in the allmovies array
         this.allmovies = data.movies;
       },
       error: (error) => {
@@ -25,15 +27,19 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // Handle sorting option change event
   sortMovieOption(event: any) {
-    //after select the sort method save to method and passing the sortMovies
+    // After selecting the sort method, update the sortMethod variable
     this.sortMethod = event.target.value;
   }
 
+  // Navigate to the details page for the selected movie or TV show
   changeRouting(movieId: number, media_type: string) {
     if (media_type === 'movie') {
+      // If the media_type is 'movie', navigate to the movie details page
       this.router.navigate(['/movie', movieId]);
     } else if (media_type === 'tv') {
+      // If the media_type is 'tv', navigate to the TV show details page
       this.router.navigate(['/tv', movieId]);
     }
   }

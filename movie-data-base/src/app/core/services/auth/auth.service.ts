@@ -7,6 +7,7 @@ import { User } from '../../models/user.modal';
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService {
   private loginSatus = new BehaviorSubject<boolean>(false);
   public loginInfo$ = this.loginSatus.asObservable();

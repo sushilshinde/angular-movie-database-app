@@ -73,6 +73,12 @@
         >
           *Password is required.
         </div>
+        <div
+        class="errorMessage"
+        *ngIf="loginForm.get('password')?.hasError('minlength')"
+      >
+        * Password must be at least 8 characters long.
+      </div>
       </div>
     </label>
     <br />
