@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Movie } from 'src/app/core/models/movie.modal';
-import { MovieService } from './../../core/services/movie.service';
+import { Movie } from 'src/app/core/models/movies.modal';
+import { MovieMyService } from './../../core/services/movie.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -16,7 +16,7 @@ export class SearchComponent implements OnInit {
   loading: boolean = true;
 
   constructor(
-    private movieService: MovieService,
+    private movieService: MovieMyService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -40,12 +40,9 @@ export class SearchComponent implements OnInit {
     this.searchResult = this.MovieDatabase.filter((each) =>
       each.title.toLowerCase().includes(this.SearchText?.trim().toLowerCase())
     );
-    if(this.searchResult.length!==0){
-      this.loading=false
-
+    if (this.searchResult.length !== 0) {
+      this.loading = false;
     }
-    
-
 
     //adding query parameters
     this.router.navigate([], {

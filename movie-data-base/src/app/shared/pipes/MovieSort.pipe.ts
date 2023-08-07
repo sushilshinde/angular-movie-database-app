@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Movie } from 'src/app/core/models/movie.modal';
+import { Movie } from 'src/app/core/models/movies.modal';
 @Pipe({
   name: 'movieSort',
 })
@@ -14,9 +14,21 @@ export class MovieSortPipe implements PipeTransform {
       case 'Title(Z-A)':
         return movies.slice().sort((a, b) => b.title.localeCompare(a.title));
       case 'Release Date Ascending':
-        return movies.slice().sort((a, b) => new Date(a.release_date).getTime() - new Date(b.release_date).getTime());
+        return movies
+          .slice()
+          .sort(
+            (a, b) =>
+              new Date(a.release_date).getTime() -
+              new Date(b.release_date).getTime()
+          );
       case 'Release Date Descending':
-        return movies.slice().sort((a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime());
+        return movies
+          .slice()
+          .sort(
+            (a, b) =>
+              new Date(b.release_date).getTime() -
+              new Date(a.release_date).getTime()
+          );
       case 'Rating Ascending':
         return movies.slice().sort((a, b) => a.rating - b.rating);
       case 'Rating Descending':

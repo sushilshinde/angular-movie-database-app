@@ -19,6 +19,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './core/services/auth/auth.service';
 import { SignupService } from './core/services/signup/signup.service';
 import { SignupComponent } from './components/auth/signup/signup.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { MoviesModule } from './Movie/movies.module';
+import { DialogOverviewExample } from './Movie/movie-categories/category-select-dialog/category-select-dialog.component';
+import { MovieMyService } from './core/services/movie.service';
+import { MovieService } from './core/services/movies.service';
+import { DateFormatService } from './core/services/date-format.service';
 
 @NgModule({
   declarations: [
@@ -32,6 +38,7 @@ import { SignupComponent } from './components/auth/signup/signup.component';
     MovieSortPipe,
     LoginComponent,
     SignupComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,8 +48,16 @@ import { SignupComponent } from './components/auth/signup/signup.component';
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    MoviesModule,
+    DialogOverviewExample,
   ],
-  providers: [AuthService, SignupService],
+  providers: [
+    AuthService,
+    SignupService,
+    MovieService,
+    DateFormatService,
+    MovieMyService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

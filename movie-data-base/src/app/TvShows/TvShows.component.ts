@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../core/services/movie.service';
-import { Movie } from '../core/models/movie.modal';
+import { MovieMyService } from '../core/services/movie.service';
+import { Movie } from '../core/models/movies.modal';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class TvShowsComponent implements OnInit {
   tvdata: Movie[] = [];
 
-  constructor(private movieService: MovieService, private router: Router) {}
+  constructor(private movieService: MovieMyService, private router: Router) {}
 
   ngOnInit() {
     this.movieService.getMovies().subscribe({

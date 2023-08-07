@@ -12,17 +12,14 @@ export class AuthService {
   public loginInfo$ = this.loginSatus.asObservable();
   private isAuthenticatedValue: boolean = false;
 
-  usersData: string[] = [];
-
   initialUserData: User[] = [];
 
-  constructor(private http: HttpClient) {
-    const dataString = localStorage.getItem('usersData');
-    if (dataString) {
-      this.initialUserData = JSON.parse(dataString);
-    }
-    console.log();
-  }
+  // constructor(private http: HttpClient) {
+  //   const dataString = localStorage.getItem('usersData');
+  //   if (dataString) {
+  //     this.initialUserData = JSON.parse(dataString);
+  //   }
+  // }
 
   updateLoginStatus(status: boolean) {
     this.loginSatus.next(status);
@@ -54,5 +51,11 @@ export class AuthService {
 
   logout(): void {
     this.isAuthenticatedValue = false;
+  }
+  getloginuserdata() {
+    const dataString = localStorage.getItem('usersData');
+    if (dataString) {
+      this.initialUserData = JSON.parse(dataString);
+    }
   }
 }

@@ -1,0 +1,71 @@
+<div class="container-fluid text-white" style="background-color: #032541">
+  <div
+    class="card d-flex flex-row detail-container text-white"
+    style="position: relative; background-color: #032541"
+  >
+    <button
+      class="btn fav-icon"
+      (click)="addToFavorite()"
+      matTooltip="Add to favorite list"
+    >
+      <span>
+        <mat-icon>favorite</mat-icon>
+      </span>
+    </button>
+    <img
+      class="card-img-left"
+      [src]="movie?.poster_path"
+      alt="Card image cap"
+      style="width: 300px; background-size: cover"
+    />
+    <div class="card-body" style="margin-left: 50px">
+      <a
+        routerLink="/movie"
+        class="btn btn-primary mb-3"
+        style="background-color: #535876"
+        >Go Back</a
+      >
+      <h3 class="card-title">{{ movie?.title }}</h3>
+      <div class="alert alert-dark" *ngIf="movie?.details?.tagline">
+        {{ movie?.details?.tagline }}
+      </div>
+      <hr />
+      <h6>Released Date:</h6>
+      {{ releaseDate }}
+      <hr />
+      <h6>Duration:</h6>
+      {{ movie?.details?.runtime }} mins
+      <hr />
+      <h6>Storyline:</h6>
+      <p class="card-text">
+        {{ movie?.overview }}
+      </p>
+      <hr />
+      <h6>Cast:</h6>
+      <div
+        class="d-flex justify-content-start flex-wrap"
+        *ngIf="movieActors && movieActors.length > 0"
+      >
+        <app-movie-actor
+          *ngFor="let actor of movieActors"
+          [credit]="actor"
+        ></app-movie-actor>
+      </div>
+      <span (click)="expandActorsSection()" class="expand-icon">
+        <mat-icon>{{ expandActors ? "expand_less" : "expand_more" }}</mat-icon>
+      </span>
+    </div>
+  </div>
+  <div class="d-flex flex-row m-5">
+    <app-movie-rating-form
+      [movieId]="movie!.id"
+      class="container-fluid"
+    ></app-movie-rating-form>
+    <div class="container-fluid" *ngIf="movie?.ratings">
+      <app-movie-review
+        *ngFor="let review of movie?.ratings"
+        [review]="review"
+      ></app-movie-review>
+    </div>
+  </div>
+</div>

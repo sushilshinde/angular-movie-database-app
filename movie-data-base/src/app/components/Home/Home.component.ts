@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Movie } from 'src/app/core/models/movie.modal';
-import { MovieService } from 'src/app/core/services/movie.service';
+import { Movie } from 'src/app/core/models/movies.modal';
+import { MovieMyService } from 'src/app/core/services/movie.service';
 
 @Component({
   selector: 'app-Home',
@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   allmovies: Movie[] = [];
   sortMethod: string = 'Title(A-Z)';
 
-  constructor(private movieService: MovieService, private router: Router) {}
+  constructor(private movieService: MovieMyService, private router: Router) {}
 
   ngOnInit() {
     this.movieService.getMovies().subscribe({

@@ -1,13 +1,12 @@
-// movie.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 
-import { Movie } from '../models/movie.modal';
+import { Movie } from '../models/movies.modal';
 @Injectable({
   providedIn: 'root',
 })
-export class MovieService {
+export class MovieMyService {
   constructor(private http: HttpClient) {}
 
   getMovies() {
