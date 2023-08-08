@@ -25,6 +25,7 @@ import { DialogOverviewExample } from './Movie/movie-categories/category-select-
 import { MovieMyService } from './core/services/movie.service';
 import { MovieService } from './core/services/movies.service';
 import { DateFormatService } from './core/services/date-format.service';
+import { TitlesOverDirective } from './shared/Directives/TitlesOver.directive';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,8 @@ import { DateFormatService } from './core/services/date-format.service';
     LoginComponent,
     SignupComponent,
     FooterComponent,
+    TitlesOverDirective
+    
   ],
   imports: [
     BrowserModule,

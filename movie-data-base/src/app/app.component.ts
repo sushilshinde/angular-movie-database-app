@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
@@ -10,11 +9,13 @@ import { Router, NavigationEnd } from '@angular/router';
 export class AppComponent implements OnInit {
   constructor(private router: Router) {}
 
+  //subscribetoRouterEvents() calling every time a new route change in paths
   ngOnInit() {
     this.subscribeToRouterEvents();
   }
 
   private subscribeToRouterEvents() {
+    //in event of routing any change in NavigationEnd it occurs and called this.scrollToTop()
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.scrollToTop();
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit {
     });
   }
 
+  //scroll to top when new route path change
   private scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

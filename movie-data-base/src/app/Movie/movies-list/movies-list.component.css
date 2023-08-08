@@ -83,17 +83,15 @@
   .home-card-container {
     width: 100%;
   }
-  .movie-imageContainer{
+  .movie-imageContainer {
     height: 290px;
   }
-  
 }
 
 /* Responsive design for Tablet */
 @media (min-width: 769px) and (max-width: 1024px) {
   .home-card-container {
     width: calc(50% - 25px);
-   
   }
 }
 
