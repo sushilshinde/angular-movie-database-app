@@ -21,31 +21,33 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router
   ) {
+    //creating the fromBuilder with  credentials and initial values with validators
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
+  //passing the login information to the services with email,and password
   login(): void {
-    console.log('is triggerd');
+    //if from is validate after pass credentials
     if (this.loginForm.valid) {
       const email = this.loginForm.value.email;
       const password = this.loginForm.value.password;
-      console.log(this.authservice.login(email, password));
       this.authservice.login(email, password).subscribe((isAuthenticate) => {
+        //if user is authenticate redirect to home page
         if (isAuthenticate) {
-          console.log('is checked to navigate', isAuthenticate);
           this.authservice.updateLoginStatus(true);
           this.router.navigate(['/home']);
         } else {
+          //any error show the error message
           this.ErrorMessage = 'Invalid email or password.';
         }
       });
     }
   }
   ngOnInit(): void {
-    console.log("working")
-    this.authservice.getloginuserdata()
+    //this used for local storage geeting data every time this components render
+    this.authservice.getloginuserdata();
   }
 }

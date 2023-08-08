@@ -36,6 +36,12 @@
         >
           * Username is required.
         </div>
+        <div
+          class="errorMessage"
+          *ngIf="signupForm.get('username')?.hasError('minlength')"
+        >
+          * Username must be at least 3 characters long.
+        </div>
       </div>
     </label>
     <label class="signup_label_container">
@@ -66,6 +72,12 @@
         </div>
         <div *ngIf="signupForm.get('email')?.hasError('email')">
           * Invalid email format.
+        </div>
+        <div
+          class="errorMessage"
+          *ngIf="signupForm.get('email')?.hasError('userExists')"
+        >
+          * User with this email already exists.
         </div>
       </div>
     </label>
@@ -98,9 +110,16 @@
         >
           * Password is required.
         </div>
+        <div
+          class="errorMessage"
+          *ngIf="signupForm.get('password')?.hasError('minlength')"
+        >
+          * Password must be at least 8 characters long.
+        </div>
       </div>
     </label>
     <br />
+
     <div class="login_login_buttonSection">
       <button
         class="btn btn-primary"

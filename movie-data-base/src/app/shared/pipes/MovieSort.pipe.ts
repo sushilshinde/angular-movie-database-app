@@ -4,6 +4,7 @@ import { Movie } from 'src/app/core/models/movies.modal';
   name: 'movieSort',
 })
 export class MovieSortPipe implements PipeTransform {
+  //using pipe sorting the movies
   transform(movies: Movie[], sortOption: string): Movie[] {
     if (!movies) return [];
     if (!sortOption) return movies;

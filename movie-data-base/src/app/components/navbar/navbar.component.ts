@@ -11,15 +11,29 @@ export class NavbarComponent implements OnInit {
   userLoginStatus?: boolean;
 
   constructor(private authservice: AuthService) {
+    // Subscribe to the loginInfo$ observable from the AuthService to get the user login status.
+    // Whenever the login status changes, the value will be updated in this.userLoginStatus.
     this.authservice.loginInfo$.subscribe((status) => {
       this.userLoginStatus = status;
     });
+
+    // Initially, the userLoginStatus is undefined until the first value is emitted by the loginInfo$ observable.
+    // This console.log will show "undefined" in the console.
     console.log(this.userLoginStatus);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // The ngOnInit lifecycle hook is called when the component is initialized.
+    // We can perform any necessary setup or actions here.
+  }
+
+  // Function to handle the user logout process.
   logout() {
-    alert('successfully Logout');
+    // Show an alert indicating successful logout.
+    alert('Successfully logged out');
+
+    // Call the updateLoginStatus function from the AuthService to update the login status to false.
+    // This will trigger the userLoginStatus change in the whole application due to the subscription in the constructor.
     this.authservice.updateLoginStatus(false);
   }
 }

@@ -21,12 +21,12 @@ export class SignupComponent {
     private formBuilder: FormBuilder
   ) {
     this.signupForm = this.formBuilder.group({
-      username: ['', [Validators.required]],
+      username: ['', [Validators.required,Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required,Validators.minLength(8)]],
     });
   }
-
+  //passing all data to server 
   signup(): void {
     if (this.signupForm.valid) {
       const username = this.signupForm.value.username;
@@ -40,6 +40,9 @@ export class SignupComponent {
           } else {
             // Show an error message indicating that the username or email already exists
             alert("Email already exits ")
+            this.signupForm.get('email')?.setErrors({ userExists: true });
+          
+           
           }
         });
     }

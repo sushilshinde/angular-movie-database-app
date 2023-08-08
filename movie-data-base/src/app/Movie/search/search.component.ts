@@ -35,6 +35,7 @@ export class SearchComponent implements OnInit {
     //after select the sort method save to method and passing the sortMovies
     this.sortMethod = event.target.value;
   }
+  //submit handler
   onSubmitSearch() {
     console.log('text', this.SearchText);
     this.searchResult = this.MovieDatabase.filter((each) =>
