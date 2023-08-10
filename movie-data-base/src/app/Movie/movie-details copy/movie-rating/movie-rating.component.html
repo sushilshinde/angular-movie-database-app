@@ -1,0 +1,25 @@
+<div *ngIf="editable">
+  <button
+  type="button"
+    mat-icon-button
+    *ngFor="let ratingId of ratingArr; index as i"
+    [id]="'star_' + i"
+    (click)="onClick(i + 1)"
+    [color]="color"
+  >
+    <mat-icon>
+      {{ showIcon(i) }}
+    </mat-icon>
+  </button>
+  <span style="vertical-align: super;"> {{ rating }} / 5 </span>
+</div>
+<div *ngIf="!editable">
+  <mat-icon
+    *ngFor="let ratingId of ratingArr; index as i"
+    [id]="'star_' + i"
+    [color]="color"
+  >
+    {{ showIcon(i) }}
+  </mat-icon>
+  <span style="vertical-align: super;"> {{ rating }} / 5 </span>
+</div>

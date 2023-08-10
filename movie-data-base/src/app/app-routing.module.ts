@@ -2,32 +2,33 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { MovieSortPipe } from './pipes/MovieSort.pipe';
-import { SearchComponent } from './search/search.component';
-import { SignupComponent } from './signup/signup.component';
-import { TvshowsComponent } from './tvshows/tvshows.component';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './components/Home/Home.component';
+import { MoviesListComponent } from './Movie/movies-list/movies-list.component';
+import { TvShowsComponent } from './TvShows/TvShows.component';
+import { SearchComponent } from './Movie/search/search.component';
+import { MovieDetailsComponent } from './Movie/movie-details copy/movie-details.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { SignupComponent } from './components/auth/signup/signup.component';
+import { NofoundComponent } from './components/nofound/nofound.component';
+import { CategoryListComponent } from './Movie/movie-categories/category-list/category-list.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/movies',
-    pathMatch: 'full',
-  },
-  {
-    path: 'movies',
-    loadChildren: () =>
-      import('./movies/movies.module').then((m) => m.MoviesModule),
-  },
-  { path: 'signup', component: SignupComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'tv', component: TvshowsComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'movie', component: MoviesListComponent },
+  { path: 'movie/:id', component: MovieDetailsComponent },
+  { path: 'category-list', component: CategoryListComponent },
+  { path: 'tv', component: TvShowsComponent },
+  { path: 'tv/:id', component: MovieDetailsComponent },
   { path: 'search', component: SearchComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: '**', component: NofoundComponent },
 ];
 
 @NgModule({
-  declarations: [LoginComponent, SearchComponent, MovieSortPipe, SignupComponent],
-  imports: [RouterModule.forRoot(routes), ReactiveFormsModule, FormsModule, CommonModule, ReactiveFormsModule],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
