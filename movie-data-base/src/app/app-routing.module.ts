@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/Home/Home.component';
 import { MoviesListComponent } from './Movie/movies-list/movies-list.component';
-import { TvShowsComponent } from './tvshows/TvShows.component';
+import { TvShowsComponent } from './tvshows/tvshows.component';
 import { SearchComponent } from './Movie/search/search.component';
 import { MovieDetailsComponent } from './Movie/movie-details/movie-details.component';
 import { LoginComponent } from './components/auth/login/login.component';
