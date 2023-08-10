@@ -39,6 +39,8 @@ export class AuthService {
     );
 
     if (matchingUsers.length > 0) {
+      //save the user data in local storage in name "user"
+      localStorage.setItem('user', JSON.stringify(matchingUsers[0]));
       this.isAuthenticatedValue = true; // Set the user as authenticated
       this.updateLoginStatus(true); // Update the login status
       return new Observable<boolean>((observer) => {
