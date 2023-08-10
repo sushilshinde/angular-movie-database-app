@@ -1,6 +1,6 @@
-<p appTitlesOver class="tv_title">Top Tv Shows</p>
-<div  class="home-display-containers">
-  <div  class="home-card-container" (click)="gotoDetailPage(movie.id)" *ngFor="let movie of tvdata">
+<h5 class="movies_title">Popular Movies</h5>
+<div class="home-display-containers">
+  <div class="home-card-container" (click)="gotoDetailPage(movie.id)" *ngFor="let movie of moviedata">
     <img
       class="movie-imageContainer"
       [src]="movie?.poster_path"
