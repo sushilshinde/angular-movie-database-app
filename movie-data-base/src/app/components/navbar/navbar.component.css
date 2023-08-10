@@ -1,33 +1,39 @@
-.navbar_mainContainer{
-    background-color: #29485e;
-  
-  
+.navbar_mainContainer {
+  background-color: #29485e;
 }
 
-
-.activeOption{
-    background-color: rgba(160, 213, 235, 0.9);
-    border-radius: 15px;
-    font-weight: 700;
-
+.activeOption {
+  background-color: rgba(160, 213, 235, 0.9);
+  border-radius: 15px;
+  font-weight: 700;
 }
 
-.nav_after_login{
-    display: flex;
-    gap: 6px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-   
+.nav_after_login {
+  display: flex;
+  gap: 6px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.nav_iconStyle{
-    height: 38px;
-    width: 38px;
-    color: white;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
+.nav_iconStyle {
+  height: 38px;
+  width: 38px;
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+.user_icon {
+  cursor: pointer;
+}
+.mat-tooltip {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 20px;
+  font-size: 25px;
 }

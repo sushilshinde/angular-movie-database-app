@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { getAllMoviesDetails } from 'src/app/core/actions/allMovies.actions';
 import { Movie } from 'src/app/core/models/movies.modal';
 import { MovieMyService } from 'src/app/core/services/movie.service';
 
@@ -12,7 +14,7 @@ export class HomeComponent implements OnInit {
   allmovies: Movie[] = [];
   sortMethod: string = 'Title(A-Z)';
 
-  constructor(private movieService: MovieMyService, private router: Router) {}
+  constructor(private movieService: MovieMyService, private router: Router,private store:Store) {}
 
   ngOnInit() {
     // Load all movies when the component initializes
@@ -25,6 +27,8 @@ export class HomeComponent implements OnInit {
         console.log(error);
       },
     });
+
+    this.store.dispatch(getAllMoviesDetails())
   }
 
   // Handle sorting option change event

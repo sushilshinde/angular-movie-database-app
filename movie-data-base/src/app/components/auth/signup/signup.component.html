@@ -1,14 +1,17 @@
 <div class="signup_mainContainer">
+  <!-- Sign-up form container -->
   <h2 class="signup_title">Sign Up For An account</h2>
   <p class="signup_message">
+    <!-- Sign-up instructions -->
     Signing up for an account is free and easy. Fill out the form below to get
-    started. JavaScript is required to to continue.
+    started. JavaScript is required to continue.
   </p>
   <form
     class="signup_form_main_container"
     [formGroup]="signupForm"
     (ngSubmit)="signup()"
   >
+    <!-- Username input field -->
     <label class="signup_label_container">
       <span class="signup_label_name">Username</span>
       <input
@@ -30,6 +33,7 @@
             signupForm.get('username')?.touched)
         "
       >
+        <!-- Username validation error messages -->
         <div
           class="errorMessage"
           *ngIf="signupForm.get('username')?.hasError('required')"
@@ -44,6 +48,7 @@
         </div>
       </div>
     </label>
+    <!-- Email input field -->
     <label class="signup_label_container">
       <span class="signup_label_name">Email</span>
       <input
@@ -64,6 +69,7 @@
         "
         class="login_email_error-message"
       >
+        <!-- Email validation error messages -->
         <div
           class="errorMessage"
           *ngIf="signupForm.get('email')?.hasError('required')"
@@ -82,6 +88,7 @@
       </div>
     </label>
     <br />
+    <!-- Password input field -->
     <label class="signup_label_container">
       <span class="signup_label_name">Password</span>
       <input
@@ -104,6 +111,7 @@
         "
         class="error-message"
       >
+        <!-- Password validation error messages -->
         <div
           class="errorMessage"
           *ngIf="signupForm.get('password')?.hasError('required')"
@@ -119,7 +127,7 @@
       </div>
     </label>
     <br />
-
+    <!-- Signup button and cancel link -->
     <div class="login_login_buttonSection">
       <button
         class="btn btn-primary"
@@ -128,7 +136,7 @@
       >
         Signup
       </button>
-      <a routerLink="/login" class="btn btn-outline-primary">cancle</a>
+      <a routerLink="/login" class="btn btn-outline-primary">Cancel</a>
     </div>
   </form>
 </div>

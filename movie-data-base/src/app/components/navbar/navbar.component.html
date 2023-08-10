@@ -50,15 +50,13 @@
         <a routerLink="/login" class="btn btn-success">
           login <i class="fa-solid fa-user"></i>
         </a>
-        
       </div>
       <div *ngIf="userLoginStatus" class="nav_after_login">
         <a class="nav_iconStyle"> <i class="fa-solid fa-heart"></i></a>
         <a class="nav_iconStyle"> <i class="fa-solid fa-list"></i></a>
-        <a class="nav_iconStyle"> <i class="fa-solid fa-bell"></i></a>
-        <a class="nav_iconStyle"> <i class="fa-solid fa-user"></i></a>
+        <a [matTooltip]='loginUserDetails.username' [matTooltipPosition]="'above'" class="nav_iconStyle user_icon"> <i class="fa-solid fa-user"></i></a>
         <a (click)="logout()" class="nav_iconStyle">logout</a>
-        <a class="nav_iconStyle " routerLink="/search"
+        <a class="nav_iconStyle" routerLink="/search"
           ><i class="fa-solid fa-magnifying-glass"></i
         ></a>
       </div>

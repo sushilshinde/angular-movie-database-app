@@ -23,8 +23,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MoviesModule } from './Movie/movies.module';
 import { DialogOverviewExample } from './Movie/movie-categories/category-select-dialog/category-select-dialog.component';
 import { MovieMyService } from './core/services/movie.service';
-import { MovieService } from './core/services/movies.service';
 import { DateFormatService } from './core/services/date-format.service';
+import { TitlesOverDirective } from './shared/Directives/TitlesOver.directive';
+import { allMovieReducer } from './core/reducers/allMovies.reducer';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -39,25 +41,21 @@ import { DateFormatService } from './core/services/date-format.service';
     LoginComponent,
     SignupComponent,
     FooterComponent,
+    TitlesOverDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot(),
+    StoreModule.forRoot({ allmovies: allMovieReducer }),
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MoviesModule,
     DialogOverviewExample,
+    MatTooltipModule
   ],
-  providers: [
-    AuthService,
-    SignupService,
-    MovieService,
-    DateFormatService,
-    MovieMyService,
-  ],
+  providers: [AuthService, SignupService, DateFormatService, MovieMyService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

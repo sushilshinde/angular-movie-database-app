@@ -20,7 +20,6 @@ const routes: Routes = [
   { path: 'tv', component: TvShowsComponent },
   { path: 'tv/:id', component: MovieDetailsComponent },
   { path: 'search', component: SearchComponent },
-  { path: 'categorylist', component: CategoryListComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: '**', component: NofoundComponent },

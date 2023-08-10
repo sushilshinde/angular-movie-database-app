@@ -1,6 +1,8 @@
 <div class="login_main_conatiner">
+  <!-- Login form container -->
   <h2 class="login_login_heading">Login To Your Account</h2>
   <p class="login_featuresMessage">
+    <!-- Instructions for logging in -->
     In order to use the editing and rating capabilities of SVMD, as well as get
     personal recommendations, you will need to login to your account. If you do
     not have an account, registering for an account is free and simple.
@@ -11,6 +13,7 @@
     [formGroup]="loginForm"
     (ngSubmit)="login()"
   >
+    <!-- Email input field -->
     <label class="login_label_container">
       <span class="login_label_name">Email</span>
       <input
@@ -31,6 +34,7 @@
         "
         class="login_email_error-message"
       >
+        <!-- Email validation error messages -->
         <div
           class="errorMessage"
           *ngIf="loginForm.get('email')?.hasError('required')"
@@ -46,6 +50,7 @@
       </div>
     </label>
     <br />
+    <!-- Password input field -->
     <label class="login_label_container">
       <span class="login_label_name">Password</span>
       <input
@@ -67,6 +72,7 @@
             loginForm.get('password')?.touched)
         "
       >
+        <!-- Password validation error messages -->
         <div
           class="errorMessage"
           *ngIf="loginForm.get('password')?.hasError('required')"
@@ -74,14 +80,15 @@
           *Password is required.
         </div>
         <div
-        class="errorMessage"
-        *ngIf="loginForm.get('password')?.hasError('minlength')"
-      >
-        * Password must be at least 8 characters long.
-      </div>
+          class="errorMessage"
+          *ngIf="loginForm.get('password')?.hasError('minlength')"
+        >
+          * Password must be at least 8 characters long.
+        </div>
       </div>
     </label>
     <br />
+    <!-- Login button and password reset link -->
     <div class="login_login_buttonSection">
       <button
         class="btn btn-primary"
@@ -92,6 +99,8 @@
       </button>
       <a class="login_forget_message">Reset password</a>
     </div>
+    <p>Demo User Details Emai:venki@gmail.com  password:user1234</p>
+    <!-- Display error message if present -->
     <div class="errorMessage" *ngIf="ErrorMessage">
       {{ ErrorMessage }}
     </div>

@@ -48,6 +48,6 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit(): void {
     //this used for local storage geeting data every time this components render
-    this.authservice.getloginuserdata();
+    this.authservice.getLoginUserData();
   }
 }

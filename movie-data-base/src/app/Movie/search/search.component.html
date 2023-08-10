@@ -21,13 +21,17 @@
       <input
         class="form-control sreach_input mr-sm-2"
         type="text"
-        placeholder="{{searchResult.length===0?' The Movies,Tv,etc...':SearchText}}"
+        placeholder="{{
+          searchResult.length === 0 ? ' The Movies,Tv,etc...' : SearchText
+        }}"
         aria-label="Search"
         name="SearchText"
         [(ngModel)]="SearchText"
       />
     </div>
+    <!--disable when empty text-->
     <button
+      [disabled]="SearchText === ''"
       class="search_searchButton btn btn-primary my-2 my-sm-0"
       (click)="onSubmitSearch()"
     >
@@ -35,6 +39,7 @@
     </button>
   </div>
   <div class="search_display_container">
+    <!--sort method based on rating,title,release date-->
     <div class="search_sort_optionsontainer">
       <h1 class="search_sort_heading">Sort</h1>
       <select class="custom-select" (change)="sortMovieOption($event)">
@@ -47,9 +52,19 @@
         <option value="Rating Descending">Rating Descending</option>
       </select>
     </div>
-
+    <!-- Display welcome message when searchResult is empty -->
+    <div
+      *ngIf="searchResult.length === 0 && loading"
+      class="search_welcome_container"
+    >
+      <h1 class="search_welcome_message text-center">
+        Welcome! Enter a search query to find movies and TV shows.
+      </h1>
+    </div>
+    <!--if search results not empty showing the details of results-->
     <div *ngIf="searchResult.length !== 0" class="search_resuluts_container">
       <div
+        (click)="detailPage(movie.id, movie.media_type)"
         class="search_resulut_card"
         *ngFor="let movie of searchResult | movieSort : sortMethod"
       >
@@ -65,14 +80,14 @@
         </div>
       </div>
     </div>
-    <div class="search_nodata_container" *ngIf="searchResult.length === 0 && !loading">
+    <!--Display no matching results message when Search is not empty and searchResults equal to zero -->
+    <div
+      class="search_nodata_container"
+      *ngIf="searchResult.length === 0 && SearchText !== '' && !loading"
+    >
       <h1 class="search_nodata_message">
         There are no movies that matched your query.
       </h1>
-    </div>
-    <div *ngIf="loading" class="search_loading_container">
-      <p>loading...</p>
-
     </div>
   </div>
 </div>

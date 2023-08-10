@@ -248,6 +248,29 @@
   text-overflow: ellipsis;
   max-height: 41px;
 }
+.search_nodata_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.search_nodata_message {
+  color: white;
+  font-size: 30px;
+  align-self: center;
+}
+.search_welcome_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 100%;
+}
+.search_welcome_message {
+  color: green;
+  font-size: 30px;
+  align-self: center;
+}
 
 /* Responsive Styles for Tablet */
 @media screen and (max-width: 768px) {
