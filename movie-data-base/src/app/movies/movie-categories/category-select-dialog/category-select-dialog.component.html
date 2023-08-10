@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Select a genre</h1>
+<div mat-dialog-content>
+  <mat-form-field class="w-100">
+    <mat-label>Select</mat-label>
+    <mat-select [(value)]="selectedGenre">
+      <mat-option *ngFor="let genre of genres" [value]="genre.value">
+        {{ genre.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" color="accent">No Thanks</button>
+  <button mat-button [mat-dialog-close]="selectedGenre" cdkFocusInitial class="btn btn-primary text-white bg-primary">Ok</button>
+</div>
+''

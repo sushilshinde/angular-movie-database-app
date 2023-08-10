@@ -1,0 +1,33 @@
+<div class="card bg-gradient" style="background-color: #032541;">
+    <div class="text-center text-bold text-dark d-inline-block p-4"
+    >
+    <button type="button" class="btn btn-dark" [routerLink]="['/movies']">All Movies</button>
+    <mat-chip-listbox aria-label="genre selection" class="text-center">
+        
+        <mat-chip-option color="primary" selected disabled>Genre: {{ genre }}</mat-chip-option>
+    </mat-chip-listbox>
+    <h3 class="mt-3 text-white">Genre: {{ genre }}</h3>
+</div>
+</div>
+<div class="container-fluid bg-gradient" *ngFor="let movie of moviesList" style="background-color: #032541;">
+    <mat-grid-list cols="1" rowHeight="5:1" colHeight="1:1" class="card bg-gradient" style="background-color: #032541;">
+        <h3 class="card-title text-center text-white mt-2">{{ movie?.title }} ({{ movie?.release_date | date }})</h3>
+        <hr />
+        <mat-grid-tile>
+            <img
+            class="card mb-5"
+            [src]="movie.poster_path"
+            alt="Card image cap"
+            style="width: 20%; object-fit: contain; background-position: center; height: 256px;"
+          />
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="card" style="width: 50%; ">
+                <p class="card-body">
+                    {{ movie.overview }}
+                </p>
+                <a [routerLink]="['/movies', movie.id]" class="btn btn-dark">See details</a>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
