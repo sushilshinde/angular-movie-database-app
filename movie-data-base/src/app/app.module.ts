@@ -8,7 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { NofoundComponent } from './components/nofound/nofound.component';
 import { MoviesListComponent } from './Movie/movies-list/movies-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { TvShowsComponent } from './TvShows/TvShows.component';
+import { TvShowsComponent } from './components/TvShows/TvShows.component';
 import { HomeComponent } from './components/Home/Home.component';
 import { SearchComponent } from './Movie/search/search.component';
 import { MovieSortPipe } from './shared/pipes/MovieSort.pipe';
@@ -53,7 +53,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ReactiveFormsModule,
     MoviesModule,
     DialogOverviewExample,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   providers: [AuthService, SignupService, DateFormatService, MovieMyService],
   bootstrap: [AppComponent],

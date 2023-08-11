@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Movie } from 'src/app/core/models/movies.modal';
 import { MovieMyService } from './../../core/services/movie.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
   // Array to store the list of movies from the database
   MovieDatabase: Movie[] = [];
   // Array to store the search results
@@ -20,6 +21,8 @@ export class SearchComponent implements OnInit {
   // Loading indicator
   loading: boolean = true;
 
+  private subscription?: Subscription;
+
   constructor(
     private movieService: MovieMyService,
     private router: Router,
@@ -28,7 +31,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     // Fetch movies from the service when the component initializes
-    this.movieService.getMovies().subscribe({
+    this.subscription = this.movieService.getMovies().subscribe({
       next: (data) => {
         this.MovieDatabase = data.movies;
       },
@@ -36,6 +39,13 @@ export class SearchComponent implements OnInit {
         console.log(error);
       },
     });
+  }
+
+  ngOnDestroy() {
+    //unsubscribe from the subscription(s) to prevent memory leaks.
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   // Function to handle the selection of sorting method

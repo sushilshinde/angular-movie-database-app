@@ -5,11 +5,13 @@
     (click)="gotoDetailPage(movie.id)"
     *ngFor="let movie of moviedata"
   >
+   <div class="movie-imageContainer">
     <img
-      class="movie-imageContainer"
-      [src]="movie?.poster_path"
-      alt="Card image cap"
-    />
+    class="movie-image"
+    [src]="movie?.poster_path"
+    alt="Card image cap"
+  />
+   </div>
 
     <div class="movie-card-body">
       <h5 class="movie-card-title">{{ movie?.title }}</h5>
