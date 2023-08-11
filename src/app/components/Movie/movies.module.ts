@@ -16,8 +16,8 @@ import { MovieDetailsComponent } from './movie-details copy/movie-details.compon
 import { MoviesComponent } from './movies.component';
 import { MovieActorComponent } from './movie-details copy/movie-actor/movie-actor.component';
 import { CommonModule } from '@angular/common';
-import { MovieReviewComponent } from './movie-details copy/movie-review/movie-review.component';
 import { MovieRatingComponent } from './movie-details copy/movie-rating/movie-rating.component';
+import { MovieReviewComponent } from './movie-details copy/movie-review/movie-review.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MovieRatingFormComponent } from './movie-details copy/movie-rating-form/movie-rating-form.component';
 import { CategoriesSelectModule } from './movie-categories/categories-select.module';

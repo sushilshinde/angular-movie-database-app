@@ -44,6 +44,7 @@ export class MovieDetailsComponent implements OnInit {
         this.movie = movie;
         this.movieActors = movie?.credits.slice(0, 4);
         this.releaseDate = this.dateService.fomatDate(this.movie!.release_date);
+
       });
   }
 
