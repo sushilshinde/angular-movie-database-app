@@ -10,8 +10,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { StoreModule } from '@ngrx/store';
+<<<<<<< HEAD:movie-data-base/src/app/Movie/movies.module.ts
 import { moviesReducer } from '../core/reducers/movies.reducers';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
+=======
+import { moviesReducer } from '../../core/reducers/movies.reducers';
+import { MovieDetailsComponent } from './movie-details copy/movie-details.component';
+>>>>>>> VenkateswaraRao:movie-data-base/src/app/components/Movie/movies.module.ts
 //import { MoviesRoutingModule } from './movies-routing.module';
 import { MoviesComponent } from './movies.component';
 import { MovieActorComponent } from './movie-details/movie-actor/movie-actor.component';

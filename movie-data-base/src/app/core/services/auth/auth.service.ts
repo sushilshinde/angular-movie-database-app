@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { User } from '../../models/user.modal';
+import { User } from '../../interface/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -15,12 +13,6 @@ export class AuthService {
   initialUserData: User[] = []; // Array to store user data initially fetched from local storage
 
   // Constructor - commented out for future reference
-  // constructor(private http: HttpClient) {
-  //   const dataString = localStorage.getItem('usersData');
-  //   if (dataString) {
-  //     this.initialUserData = JSON.parse(dataString);
-  //   }
-  // }
 
   // Method to update the login status using the BehaviorSubject
   updateLoginStatus(status: boolean) {

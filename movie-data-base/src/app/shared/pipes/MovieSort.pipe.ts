@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Movie } from 'src/app/core/models/movies.modal';
+import { Movie } from 'src/app/core/interface/movies.interface';
 @Pipe({
   name: 'movieSort',
 })

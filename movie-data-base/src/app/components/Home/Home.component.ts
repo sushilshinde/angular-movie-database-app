@@ -1,24 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { getAllMoviesDetails } from 'src/app/core/actions/allMovies.actions';
-import { Movie } from 'src/app/core/models/movies.modal';
+import { Movie } from 'src/app/core/interface/movies.interface';
 import { MovieMyService } from 'src/app/core/services/movie.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-Home',
   templateUrl: './Home.component.html',
   styleUrls: ['./Home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   allmovies: Movie[] = [];
   sortMethod: string = 'Title(A-Z)';
+  private subscription?: Subscription;
 
-  constructor(private movieService: MovieMyService, private router: Router,private store:Store) {}
+  constructor(
+    private movieService: MovieMyService,
+    private router: Router,
+    private store: Store
+  ) {}
 
   ngOnInit() {
     // Load all movies when the component initializes
-    this.movieService.getMovies().subscribe({
+    this.subscription = this.movieService.getMovies().subscribe({
       next: (data) => {
         // Store the fetched movies in the allmovies array
         this.allmovies = data.movies;
@@ -28,7 +34,12 @@ export class HomeComponent implements OnInit {
       },
     });
 
-    this.store.dispatch(getAllMoviesDetails())
+    this.store.dispatch(getAllMoviesDetails());
+  }
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   // Handle sorting option change event

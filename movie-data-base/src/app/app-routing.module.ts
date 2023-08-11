@@ -4,14 +4,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/Home/Home.component';
+<<<<<<< HEAD
 import { MoviesListComponent } from './Movie/movies-list/movies-list.component';
 import { TvShowsComponent } from './tvshows/tvshows.component';
 import { SearchComponent } from './Movie/search/search.component';
 import { MovieDetailsComponent } from './Movie/movie-details/movie-details.component';
+=======
+import { MoviesListComponent } from './components/Movie/movies-list/movies-list.component';
+import { TvShowsComponent } from './components/TvShows/TvShows.component';
+import { SearchComponent } from './components/Movie/search/search.component';
+import { MovieDetailsComponent } from './components/Movie/movie-details copy/movie-details.component';
+>>>>>>> VenkateswaraRao
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { NofoundComponent } from './components/nofound/nofound.component';
-import { CategoryListComponent } from './Movie/movie-categories/category-list/category-list.component';
+import { CategoryListComponent } from './components/Movie/movie-categories/category-list/category-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },

@@ -1,5 +1,5 @@
-import { CreditModel } from "./credit.model";
-import { RatingModel } from "./rating.model";
+import { CreditModel } from './credit.interface';
+import { RatingModel } from './rating.interface';
 
 export interface MovieModel {
   ratings: RatingModel[];
@@ -16,7 +16,7 @@ export interface MovieModel {
   details: {
     runtime: number;
     tagline: string;
-    genres: {id: number, name: string}[]
+    genres: { id: number; name: string }[];
   };
   credits: CreditModel[];
 }

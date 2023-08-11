@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Store } from '@ngrx/store';
 
-import { Movie } from '../models/movies.modal';
+import { Movie } from '../interface/movies.interface';
 @Injectable({
   providedIn: 'root',
 })

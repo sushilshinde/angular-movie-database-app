@@ -1,11 +1,13 @@
 <p appTitlesOver class="tv_title">Top Tv Shows</p>
 <div  class="home-display-containers">
   <div  class="home-card-container" (click)="gotoDetailPage(movie.id)" *ngFor="let movie of tvdata">
-    <img
-      class="movie-imageContainer"
+    <div class="movie_image_container">
+      <img
+      class="movie-image"
       [src]="movie?.poster_path"
       alt="Card image cap"
     />
+    </div>
 
     <div class="movie-card-body">
       <h5 class="movie-card-title">{{ movie?.title }}</h5>

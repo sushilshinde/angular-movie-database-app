@@ -1,22 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MovieMyService } from 'src/app/core/services/movie.service';
-import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { Movie } from 'src/app/core/models/movies.modal';
+import { Subscription } from 'rxjs';
+import { Movie } from 'src/app/core/interface/movies.interface';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-movies-list',
   templateUrl: './movies-list.component.html',
   styleUrls: ['./movies-list.component.css'],
 })
-export class MoviesListComponent implements OnInit {
+export class MoviesListComponent implements OnInit, OnDestroy {
   moviedata: Movie[] = [];
+  private subscription?: Subscription;
 
   constructor(private movieService: MovieMyService, private router: Router) {}
 
   ngOnInit() {
-    this.movieService.getMovies().subscribe({
+    this.subscription = this.movieService.getMovies().subscribe({
       next: (data) => {
         this.moviedata = data.movies.filter(
           (each) => each.media_type === 'movie'
@@ -26,6 +25,13 @@ export class MoviesListComponent implements OnInit {
         console.log(error);
       },
     });
+  }
+
+  ngOnDestroy() {
+    //unsubscribe from the subscription(s) to prevent memory leaks.
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
   //detail page handler
   gotoDetailPage(movieId: number) {

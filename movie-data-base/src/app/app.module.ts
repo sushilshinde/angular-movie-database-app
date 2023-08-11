@@ -6,11 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { NofoundComponent } from './components/nofound/nofound.component';
-import { MoviesListComponent } from './Movie/movies-list/movies-list.component';
+import { MoviesListComponent } from './components/Movie/movies-list/movies-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+<<<<<<< HEAD
 import { TvShowsComponent } from './tvshows/tvshows.component';
+=======
+import { TvShowsComponent } from './components/TvShows/TvShows.component';
+>>>>>>> VenkateswaraRao
 import { HomeComponent } from './components/Home/Home.component';
-import { SearchComponent } from './Movie/search/search.component';
+import { SearchComponent } from './components/Movie/search/search.component';
 import { MovieSortPipe } from './shared/pipes/MovieSort.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -20,8 +24,8 @@ import { AuthService } from './core/services/auth/auth.service';
 import { SignupService } from './core/services/signup/signup.service';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { MoviesModule } from './Movie/movies.module';
-import { DialogOverviewExample } from './Movie/movie-categories/category-select-dialog/category-select-dialog.component';
+import { MoviesModule } from './components/Movie/movies.module';
+import { DialogOverviewExample } from './components/Movie/movie-categories/category-select-dialog/category-select-dialog.component';
 import { MovieMyService } from './core/services/movie.service';
 import { DateFormatService } from './core/services/date-format.service';
 import { TitlesOverDirective } from './shared/Directives/TitlesOver.directive';
@@ -53,7 +57,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ReactiveFormsModule,
     MoviesModule,
     DialogOverviewExample,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   providers: [AuthService, SignupService, DateFormatService, MovieMyService],
   bootstrap: [AppComponent],
