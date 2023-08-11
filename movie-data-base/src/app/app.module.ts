@@ -8,11 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { NofoundComponent } from './components/nofound/nofound.component';
 import { MoviesListComponent } from './components/Movie/movies-list/movies-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-<<<<<<< HEAD
-import { TvShowsComponent } from './tvshows/tvshows.component';
-=======
 import { TvShowsComponent } from './components/TvShows/TvShows.component';
->>>>>>> VenkateswaraRao
 import { HomeComponent } from './components/Home/Home.component';
 import { SearchComponent } from './components/Movie/search/search.component';
 import { MovieSortPipe } from './shared/pipes/MovieSort.pipe';

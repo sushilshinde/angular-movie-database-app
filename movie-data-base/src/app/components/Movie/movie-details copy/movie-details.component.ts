@@ -44,10 +44,7 @@ export class MovieDetailsComponent implements OnInit {
         this.movie = movie;
         this.movieActors = movie?.credits.slice(0, 4);
         this.releaseDate = this.dateService.fomatDate(this.movie!.release_date);
-<<<<<<<< HEAD:movie-data-base/src/app/Movie/movie-details/movie-details.component.ts
-        console.log(this.movie);
-========
->>>>>>>> VenkateswaraRao:movie-data-base/src/app/components/Movie/movie-details copy/movie-details.component.ts
+
       });
   }
 
