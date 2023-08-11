@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
-import { RatingModel } from 'src/app/core/models/rating.model';
+import { RatingModel } from 'src/app/core/interface/rating.interface';
 import { DateFormatService } from 'src/app/core/services/date-format.service';
 
 @Component({

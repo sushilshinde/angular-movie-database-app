@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { getAllMoviesDetails } from 'src/app/core/actions/allMovies.actions';
-import { Movie } from 'src/app/core/models/movies.modal';
+import { Movie } from 'src/app/core/interface/movies.interface';
 import { MovieMyService } from 'src/app/core/services/movie.service';
 import { Subscription } from 'rxjs';
 

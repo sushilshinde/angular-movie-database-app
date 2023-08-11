@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
-import { CreditModel } from 'src/app/core/models/credit.model';
-import { MovieModel } from 'src/app/core/models/movie.model';
+import { CreditModel } from 'src/app/core/interface/credit.interface';
+import { MovieModel } from 'src/app/core/interface/movie.interface';
 import { DateFormatService } from 'src/app/core/services/date-format.service';
 @Component({
   selector: 'app-movie-details',
@@ -44,7 +44,6 @@ export class MovieDetailsComponent implements OnInit {
         this.movie = movie;
         this.movieActors = movie?.credits.slice(0, 4);
         this.releaseDate = this.dateService.fomatDate(this.movie!.release_date);
-      
       });
   }
 

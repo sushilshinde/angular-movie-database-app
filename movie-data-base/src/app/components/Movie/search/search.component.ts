@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Movie } from 'src/app/core/models/movies.modal';
-import { MovieMyService } from './../../core/services/movie.service';
+import { Movie } from 'src/app/core/interface/movies.interface';
+import { MovieMyService } from 'src/app/core/services/movie.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 

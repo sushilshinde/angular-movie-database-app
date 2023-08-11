@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User } from '../../models/user.modal';
+import { User } from '../../interface/user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SignupService {
+export class SignupService implements OnDestroy {
   usersInitialData: User[] = []; // Array to store initial user details from getting http json file
-
+  private subscription?: Subscription;
   constructor(private http: HttpClient) {
     // Using HttpClient to get user data from a JSON file
-    this.http
+    this.subscription = this.http
       .get<{ users: User[] }>('../../../../assets/auth/users.json')
       .subscribe({
         // If the HTTP request is successful, store the user data in usersInitialData using the User model
@@ -56,5 +56,12 @@ export class SignupService {
   storeDataInlocalStorage(data: User[]) {
     // Store the updated users data in localStorage as a JSON string this used instance of api post method
     localStorage.setItem('usersData', JSON.stringify(data));
+  }
+
+  //unsubscribe the subscribe
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

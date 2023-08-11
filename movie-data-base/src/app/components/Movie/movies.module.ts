@@ -10,7 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { StoreModule } from '@ngrx/store';
-import { moviesReducer } from '../core/reducers/movies.reducers';
+import { moviesReducer } from '../../core/reducers/movies.reducers';
 import { MovieDetailsComponent } from './movie-details copy/movie-details.component';
 //import { MoviesRoutingModule } from './movies-routing.module';
 import { MoviesComponent } from './movies.component';

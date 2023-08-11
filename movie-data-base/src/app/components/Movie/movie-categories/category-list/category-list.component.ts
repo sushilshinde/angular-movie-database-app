@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { MovieModel } from 'src/app/core/models/movie.model';
+import { MovieModel } from 'src/app/core/interface/movie.interface';
 
 @Component({
   selector: 'app-category-list',

@@ -3,8 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import { addReview } from 'src/app/core/actions/movies.actions';
-import { MovieModel } from 'src/app/core/models/movie.model';
-
+import { MovieModel } from 'src/app/core/interface/movie.interface';
 
 @Component({
   selector: 'app-movie-rating-form',
@@ -42,7 +41,7 @@ export class MovieRatingFormComponent implements OnInit {
           name: 'Some User',
           rating: this.rating,
           comment: this.reviewForm.value.comment,
-          date: new Date().toLocaleString()
+          date: new Date().toLocaleString(),
         },
         movieId: this.movieId,
       })
