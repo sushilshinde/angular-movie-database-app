@@ -5,7 +5,7 @@ import { HomeComponent } from './components/Home/Home.component';
 import { MoviesListComponent } from './components/Movie/movies-list/movies-list.component';
 import { TvShowsComponent } from './components/TvShows/TvShows.component';
 import { SearchComponent } from './components/Movie/search/search.component';
-import { MovieDetailsComponent } from './components/Movie/movie-details copy/movie-details.component';
+import { MovieDetailsComponent } from './components/Movie/movie-details/movie-details.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { NofoundComponent } from './components/nofound/nofound.component';
