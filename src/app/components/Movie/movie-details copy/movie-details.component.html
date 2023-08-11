@@ -25,23 +25,23 @@
         style="background-color: #535876"
         >Go Back</a
       >
-      <h3 class="card-title">{{ movie?.title }}</h3>
+      <h2 class="card-title">{{ movie?.title }}</h2>
       <div class="alert alert-dark" *ngIf="movie?.details?.tagline">
         {{ movie?.details?.tagline }}
       </div>
       <hr />
-      <h6>Released Date:</h6>
+      <h3>Released Date:</h3>
       {{ releaseDate }}
       <hr />
-      <h6>Duration:</h6>
+      <h3>Duration:</h3>
       {{ movie?.details?.runtime }} mins
       <hr />
-      <h6>Storyline:</h6>
+      <h3>Storyline:</h3>
       <p class="card-text">
         {{ movie?.overview }}
       </p>
       <hr />
-      <h6>Cast:</h6>
+      <h3>Cast:</h3>
       <div
         class="d-flex justify-content-start flex-wrap"
         *ngIf="movieActors && movieActors.length > 0"
