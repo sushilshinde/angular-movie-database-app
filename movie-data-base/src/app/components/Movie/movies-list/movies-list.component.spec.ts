@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MoviesListComponent } from './movies-list.component';
 
@@ -8,7 +9,8 @@ describe('MoviesListComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MoviesListComponent]
+      declarations: [MoviesListComponent],
+      imports:[HttpClientModule]
     });
     fixture = TestBed.createComponent(MoviesListComponent);
     component = fixture.componentInstance;

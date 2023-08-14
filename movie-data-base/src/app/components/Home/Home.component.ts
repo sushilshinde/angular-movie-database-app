@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { getAllMoviesDetails } from 'src/app/core/actions/allMovies.actions';
 import { Movie } from 'src/app/core/interface/movies.interface';
 import { MovieMyService } from 'src/app/core/services/movie.service';
 import { Subscription } from 'rxjs';
+import { loadMovies } from '../../core/actions/allMovies.actions';
+import { selectAllMovies, selectMoviesLoading, selectMoviesError } from '../../core/selectors/allmovies.selectors';
+
 
 @Component({
   selector: 'app-Home',
@@ -13,6 +15,7 @@ import { Subscription } from 'rxjs';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   allmovies: Movie[] = [];
+  loading:boolean=false
   sortMethod: string = 'Title(A-Z)';
   private subscription?: Subscription;
 
@@ -24,17 +27,19 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Load all movies when the component initializes
-    this.subscription = this.movieService.getMovies().subscribe({
-      next: (data) => {
-        // Store the fetched movies in the allmovies array
-        this.allmovies = data.movies;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
-
-    this.store.dispatch(getAllMoviesDetails());
+    // this.subscription = this.movieService.getMovies().subscribe({
+    //   next: (data) => {
+    //     // Store the fetched movies in the allmovies array
+    //     this.allmovies = data.movies;
+    //   },
+    //   error: (error) => {
+    //     console.log(error);
+    //   },
+    // });
+    this.store.dispatch(loadMovies());
+    this.store.select(selectAllMovies).subscribe(movies => this.allmovies = movies);
+    this.store.select(selectMoviesLoading).subscribe(loading => this.loading = loading);
+    
   }
   ngOnDestroy(): void {
     if (this.subscription) {

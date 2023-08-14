@@ -25,8 +25,10 @@ import { DialogOverviewExample } from './components/Movie/movie-categories/categ
 import { MovieMyService } from './core/services/movie.service';
 import { DateFormatService } from './core/services/date-format.service';
 import { TitlesOverDirective } from './shared/Directives/TitlesOver.directive';
-import { allMovieReducer } from './core/reducers/allMovies.reducer';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { EffectsModule } from '@ngrx/effects';
+import { allmovieReducer } from './core/reducers/allMovies.reducer';
+import { MovieEffects } from './core/effects/allmovies.effects';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ allmovies: allMovieReducer }),
+    StoreModule.forRoot({ allmovies: allmovieReducer }),
+    EffectsModule.forRoot([MovieEffects]),
+
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,

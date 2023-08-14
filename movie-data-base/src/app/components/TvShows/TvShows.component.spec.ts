@@ -2,6 +2,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { TvShowsComponent } from './TvShows.component';
 
@@ -11,9 +12,9 @@ describe('TvShowsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TvShowsComponent ]
-    })
-    .compileComponents();
+      declarations: [TvShowsComponent],
+      imports: [HttpClientModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
