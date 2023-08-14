@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { updateUsers } from '../../actions/user.actions';
 import { User } from '../../interface/user.interface';
 
 @Injectable({
@@ -10,11 +12,12 @@ import { User } from '../../interface/user.interface';
 export class SignupService implements OnDestroy {
   usersInitialData: User[] = []; // Array to store initial user details from getting http json file
   private subscription?: Subscription;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private store: Store) {
     // Using HttpClient to get user data from a JSON file
     this.subscription = this.http
       .get<{ users: User[] }>('../../../../assets/auth/users.json')
       .subscribe({
+        // update in users state
         // If the HTTP request is successful, store the user data in usersInitialData using the User model
         next: (data) => {
           this.usersInitialData = data.users;
@@ -34,6 +37,9 @@ export class SignupService implements OnDestroy {
   ): Observable<boolean> {
     // Check if the email is not already present in the usersInitialData array
     if (!this.usersInitialData.some((user: User) => user.email === email)) {
+      // Update users in store
+      const newUsers = [...JSON.parse(localStorage.getItem('usersData') || '[]'), { username, email, password }]
+      this.store.dispatch(updateUsers({ users: newUsers }))
       // If the email is not already present, add the new user to the usersInitialData array
       this.usersInitialData.push({ username, email, password });
 

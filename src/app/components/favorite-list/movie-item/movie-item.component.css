@@ -1,0 +1,4 @@
+.list-group-item-action:hover {
+    opacity: .7;
+    transition: opacity .8s;
+}

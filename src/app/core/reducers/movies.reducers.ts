@@ -1,21 +1,15 @@
 import { createReducer, on } from '@ngrx/store';
 import { addReview } from '../actions/movies.actions';
-import { MovieModel } from '../interface/movie.interface';
+import { MovieDetailsModel } from '../interface/movie.interface';
 import data from '../../components/Movie/data.json';
 
 const initialMovies = data.movies.map((movie) => ({
   ...movie,
-  ratings: [
-    {
-      name: 'John Doe',
-      rating: 4,
-      comment: 'It was a good movie!',
-      date: Date.now().toString(),
-    },
-  ],
+  ratings: [],
+  rating: 3
 }));
 
-const initialState: { movies: MovieModel[] } = {
+const initialState: { movies: MovieDetailsModel[] } = {
   movies: initialMovies,
 };
 

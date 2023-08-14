@@ -11,17 +11,19 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { StoreModule } from '@ngrx/store';
 import { moviesReducer } from '../../core/reducers/movies.reducers';
-import { MovieDetailsComponent } from './movie-details copy/movie-details.component';
-//import { MoviesRoutingModule } from './movies-routing.module';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { MoviesRoutingModule } from './movies-routing.module';
 import { MoviesComponent } from './movies.component';
-import { MovieActorComponent } from './movie-details copy/movie-actor/movie-actor.component';
+import { MovieActorComponent } from './movie-details/movie-actor/movie-actor.component';
 import { CommonModule } from '@angular/common';
-import { MovieRatingComponent } from './movie-details copy/movie-rating/movie-rating.component';
-import { MovieReviewComponent } from './movie-details copy/movie-review/movie-review.component';
+import { MovieRatingComponent } from './movie-details/movie-rating/movie-rating.component';
+import { MovieReviewComponent } from './movie-details/movie-review/movie-review.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MovieRatingFormComponent } from './movie-details copy/movie-rating-form/movie-rating-form.component';
-import { CategoriesSelectModule } from './movie-categories/categories-select.module';
+import { MovieRatingFormComponent } from './movie-details/movie-rating-form/movie-rating-form.component';
 import { CategoryListComponent } from './movie-categories/category-list/category-list.component';
+import { MovieItemComponent } from '../favorite-list/movie-item/movie-item.component';
+import { CategoryItemComponent } from './movie-categories/category-list/category-item/category-item.component';
+import { DateFormat } from 'src/app/shared/pipes/DateFormat.pipe';
 
 @NgModule({
   declarations: [
@@ -32,10 +34,13 @@ import { CategoryListComponent } from './movie-categories/category-list/category
     MovieRatingComponent,
     MovieRatingFormComponent,
     CategoryListComponent,
+    CategoryItemComponent,
+    DateFormat
+    // MovieItemComponent
   ],
   imports: [
     RouterModule,
-    // MoviesRoutingModule,
+    MoviesRoutingModule,
     StoreModule.forFeature('movies', moviesReducer),
     CommonModule,
     MatIconModule,
@@ -46,7 +51,6 @@ import { CategoryListComponent } from './movie-categories/category-list/category
     MatTooltipModule,
     MatSelectModule,
     MatFormFieldModule,
-    CategoriesSelectModule,
     MatGridListModule,
     MatChipsModule,
   ],

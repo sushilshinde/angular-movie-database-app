@@ -1,18 +1,41 @@
-import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Injectable, OnDestroy } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
+import { updateActiveUser } from '../../actions/user.actions';
 import { User } from '../../interface/user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthService implements OnDestroy {
+  private activeUserSubscription?: Subscription;
   private loginStatus = new BehaviorSubject<boolean>(false);
   public loginInfo$ = this.loginStatus.asObservable(); // Observable to track login status changes
   private isAuthenticatedValue: boolean = false; // Indicates if the user is authenticated or not
 
   initialUserData: User[] = []; // Array to store user data initially fetched from local storage
 
-  // Constructor - commented out for future reference
+  constructor(private store: Store<{users: { activeUser: any }}>) {}
+
+  /**
+   * The function `isActiveUser()` checks if the active user is currently active and returns a boolean
+   * value indicating their status.
+   * @returns The function `isActiveUser()` returns a boolean value indicating whether the user is
+   * active or not.
+   */
+  isActiveUser() : boolean{
+    let isActive: boolean = false;
+    this.activeUserSubscription = this.store.select('users').subscribe(userStore =>  {
+    //   console.log(userStore.activeUser?.username)
+      if(userStore.activeUser?.username) {
+        isActive = true
+      }else {
+        isActive = false
+      }
+    })
+    // console.log('user is inactive')
+    return isActive;
+  }
 
   // Method to update the login status using the BehaviorSubject
   updateLoginStatus(status: boolean) {
@@ -31,6 +54,8 @@ export class AuthService {
     );
 
     if (matchingUsers.length > 0) {
+      // update state in for activeUser
+      this.store.dispatch(updateActiveUser({ user: matchingUsers[0] }))
       //save the user data in local storage in name "user"
       localStorage.setItem('user', JSON.stringify(matchingUsers[0]));
       this.isAuthenticatedValue = true; // Set the user as authenticated
@@ -58,5 +83,9 @@ export class AuthService {
     if (dataString) {
       this.initialUserData = JSON.parse(dataString); // Parse and store user data from local storage
     }
+  }
+
+  ngOnDestroy(): void {
+    this.activeUserSubscription?.unsubscribe()
   }
 }

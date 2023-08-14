@@ -1,0 +1,6 @@
+<div class="container-fluid card mt-3 border p-3">
+  <h3 class="review-name">{{ review.name }}</h3>
+  <i>{{ review.date | dateformat:'with_time' }}</i>
+    <app-movie-rating [rating]="review.rating"></app-movie-rating>
+  <p>{{ review.comment }}</p>
+</div>
