@@ -9,8 +9,7 @@
     </mat-select>
   </mat-form-field>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()" color="accent">No Thanks</button>
-  <button mat-button [mat-dialog-close]="selectedGenre" cdkFocusInitial class="btn btn-primary text-white bg-primary">Ok</button>
+<div mat-dialog-actions class="dialog-buttons">
+  <button mat-button (click)="onNoClick()" color="light" class="bg-danger">No Thanks</button>
+  <button mat-button [mat-dialog-close]="selectedGenre" cdkFocusInitial class="btn btn-light bg-light">Ok</button>
 </div>
-''

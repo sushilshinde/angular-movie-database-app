@@ -2,8 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { MovieModel } from 'src/app/core/interface/movie.interface';
+import { MovieDetailsModel } from 'src/app/core/interface/movie.interface';
 
+/* The CategoryListComponent is a TypeScript component that filters and displays a list of movies based
+on a selected genre. */
 @Component({
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
@@ -11,11 +13,11 @@ import { MovieModel } from 'src/app/core/interface/movie.interface';
 })
 export class CategoryListComponent implements OnInit, OnDestroy {
   genre!: string;
-  moviesList!: MovieModel[];
+  moviesList!: MovieDetailsModel[];
   subscription!: Subscription;
   constructor(
     private router: Router,
-    private store: Store<{ movies: { movies: MovieModel[] } }>,
+    private store: Store<{ movies: { movies: MovieDetailsModel[] } }>,
     private route: ActivatedRoute
   ) {
     this.subscription = this.router.events.subscribe((e: any) => {
@@ -40,6 +42,10 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     this.filterMovies();
   }
 
+  /**
+   * The function filters a list of movies based on a specific genre and stores the filtered movies in
+   * a variable.
+   */
   private filterMovies() {
     this.store.select('movies').subscribe((movies) => {
       this.moviesList = movies.movies.filter((movie) => {
