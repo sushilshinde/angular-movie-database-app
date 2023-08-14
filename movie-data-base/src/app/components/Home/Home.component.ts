@@ -26,20 +26,20 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    // Load all movies when the component initializes
-    // this.subscription = this.movieService.getMovies().subscribe({
-    //   next: (data) => {
-    //     // Store the fetched movies in the allmovies array
-    //     this.allmovies = data.movies;
-    //   },
-    //   error: (error) => {
-    //     console.log(error);
-    //   },
-    // });
+    //Load all movies when the component initializes
+    this.subscription = this.movieService.getMovies().subscribe({
+      next: (data) => {
+        // Store the fetched movies in the allmovies array
+        this.allmovies = data.movies;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
     this.store.dispatch(loadMovies());
-    this.store.select(selectAllMovies).subscribe(movies => this.allmovies = movies);
-    this.store.select(selectMoviesLoading).subscribe(loading => this.loading = loading);
-    
+    // this.store.select(selectAllMovies).subscribe(movies => this.allmovies = movies);
+    // this.store.select(selectMoviesLoading).subscribe(loading => this.loading = loading);
+    // console.log(this.allmovies)
   }
   ngOnDestroy(): void {
     if (this.subscription) {
