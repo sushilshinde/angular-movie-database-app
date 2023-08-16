@@ -24,18 +24,13 @@ import { MoviesModule } from './components/Movie/movies.module';
 import { GenreSelectDialog } from './components/Movie/movie-categories/category-select-dialog/category-select-dialog.component';
 import { MovieMyService } from './core/services/movie.service';
 import { TitlesOverDirective } from './shared/Directives/TitlesOver.directive';
+import { allMovieReducer } from './core/reducers/allMovies.reducer';
 import { MatTooltipModule } from '@angular/material/tooltip';
-<<<<<<< HEAD
-import { EffectsModule } from '@ngrx/effects';
-import { allmovieReducer } from './core/reducers/allMovies.reducer';
-import { MovieEffects } from './core/effects/allmovies.effects';
-=======
 import { FavoriteListComponent } from './components/favorite-list/favorite-list.component';
 import { MovieItemComponent } from './components/favorite-list/movie-item/movie-item.component';
 import { usersReducer } from './core/reducers/users.reducers';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthGuard } from './core/guards/auth.guard';
->>>>>>> aswathi_s
 
 @NgModule({
   declarations: [
@@ -57,13 +52,7 @@ import { AuthGuard } from './core/guards/auth.guard';
   imports: [
     BrowserModule,
     AppRoutingModule,
-<<<<<<< HEAD
-    StoreModule.forRoot({ allmovies: allmovieReducer }),
-    EffectsModule.forRoot([MovieEffects]),
-
-=======
     StoreModule.forRoot({ allmovies: allMovieReducer, users: usersReducer }),
->>>>>>> aswathi_s
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,

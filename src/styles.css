@@ -12,8 +12,6 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-<<<<<<< HEAD
-=======
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -31,4 +29,3 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-mdc-dialog-container .mdc-dialog__surface h1 {
   color: white;
 }
->>>>>>> aswathi_s
