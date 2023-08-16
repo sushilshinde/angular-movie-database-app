@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import {
   MatDialog,
   MAT_DIALOG_DATA,
@@ -10,13 +10,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CategoriesSelectModule } from '../categories-select.module';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import data from '../../data.json';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { Subscription } from 'rxjs';
 
 const genresList = new Set<string>();
 const movies = data.movies;
@@ -29,9 +29,12 @@ movies.forEach((movie: any) => {
   });
 });
 
+/* The `GenreSelectDialog` class is a TypeScript component that represents a dialog for selecting a
+genre and navigating to a category list based on the selected genre. */
 @Component({
-  selector: 'dialog-overview-example',
-  templateUrl: 'dialog-overview-example.html',
+  selector: 'genre-select-dialog',
+  templateUrl: './genre-select-dialog.html',
+  styleUrls: ['./category-select-dialog.component.css'],
   standalone: true,
   imports: [
     MatFormFieldModule,
@@ -46,9 +49,10 @@ movies.forEach((movie: any) => {
     MatTooltipModule,
   ],
 })
-export class DialogOverviewExample implements OnInit {
+export class GenreSelectDialog implements OnInit, OnDestroy {
   genre!: string;
   name!: string;
+  closeDialogSubscription?: Subscription;
 
   constructor(
     public dialog: MatDialog,
@@ -57,6 +61,10 @@ export class DialogOverviewExample implements OnInit {
   ) {}
   ngOnInit(): void {}
 
+  /**
+   * The function `openGenreDialog()` opens a dialog box with a category select component, allowing the
+   * user to choose a genre and navigate to the category list page with the selected genre.
+   */
   openGenreDialog() {
     const dialogRef = this.dialog.open(CategorySelectDialogComponent, {
       data: { genre: this.genre },
@@ -64,12 +72,11 @@ export class DialogOverviewExample implements OnInit {
       exitAnimationDuration: 1000,
       height: '300px',
       width: '600px',
-      position: {
-        top: '0',
-      },
+      backdropClass: 'dialogOverlay',
+      panelClass: 'dialogPanel'
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    this.closeDialogSubscription = dialogRef.afterClosed().subscribe((result) => {
       this.genre = result;
 
       if (this.genre) {
@@ -81,13 +88,21 @@ export class DialogOverviewExample implements OnInit {
       }
     });
   }
+
+  ngOnDestroy(): void {
+    this.closeDialogSubscription?.unsubscribe()
+  }
 }
 
+/* The `GenreModel` interface is defining the structure of an object that represents a genre in the
+application. It has two properties: `value` and `viewValue`. */
 interface GenreModel {
   value: string;
   viewValue: string;
 }
 
+/* The CategorySelectDialogComponent is a TypeScript component that represents a dialog for selecting a
+category, with a list of genres and the ability to close the dialog. */
 @Component({
   selector: 'app-category-select-dialog',
   templateUrl: './category-select-dialog.component.html',
@@ -99,7 +114,6 @@ interface GenreModel {
     MatInputModule,
     FormsModule,
     MatButtonModule,
-    CategoriesSelectModule,
     MatSelectModule,
     CommonModule,
   ],

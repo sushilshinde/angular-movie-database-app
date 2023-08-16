@@ -1,0 +1,10 @@
+<a [routerLink]="['/movie', movie.id]" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center mb-4 bg-transparent text-white">
+  <div class="image-parent">
+      <img [src]="movie?.poster_path" class="img-fluid" [alt]="movie?.title" />
+  </div>
+    <div class="container-fluid">
+      <h3>{{ movie?.title }} <span class="badge badge-alert badge-pill"> {{ movie?.release_date | date }}</span></h3> 
+      <p class="w-2"><small>{{ movie?.overview?.slice(0, 200) }}....</small></p>
+      <a [routerLink]="['/movie', movie.id]" class="btn btn-dark">See details</a>
+    </div>
+</a>

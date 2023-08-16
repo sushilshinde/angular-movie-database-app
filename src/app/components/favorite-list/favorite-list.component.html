@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-sm-8 col-lg-5 favorite-container">
+      <h2 >My Favorites</h2>
+      <h3 *ngIf="myFavorites.length === 0">No Movies added to your favorite list</h3>
+      <a
+        [routerLink]="['../']"
+        class="btn btn-primary mb-3"
+        >Go Back</a
+      >
+      <ul class="list-group" *ngFor="let movie of myFavorites">
+        <app-movie-item [movie]="movie"></app-movie-item>
+      </ul>
+    </div>
+  </div>
+</div>
