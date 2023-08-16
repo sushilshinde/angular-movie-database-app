@@ -60,9 +60,17 @@
         >
           <mat-icon>favorite</mat-icon>
         </button>
-        <a class="nav_iconStyle"> <i class="fa-solid fa-list"></i></a>
-        <a [matTooltip]='loginUserDetails.username' [matTooltipPosition]="'above'" class="nav_iconStyle user_icon"> <i class="fa-solid fa-user"></i></a>
-        <a (click)="logout()" class="nav_iconStyle">logout</a>
+        <button
+          mat-icon-button
+          [matTooltip]="loginUserDetails.username"
+          class="btn btn-dark text-white"
+        >
+          <mat-icon>account_circle</mat-icon>
+        </button>
+
+        <a (click)="logout()" class="nav_iconStyle" matTooltip="logout"
+          ><mat-icon>logout</mat-icon></a
+        >
         <a class="nav_iconStyle" routerLink="/search"
           ><i class="fa-solid fa-magnifying-glass"></i
         ></a>

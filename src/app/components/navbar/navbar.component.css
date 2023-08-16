@@ -16,27 +16,8 @@
   align-items: center;
 }
 
-.nav_iconStyle {
-  height: 38px;
-  width: 38px;
-  color: white;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-}
-.user_icon {
-  cursor: pointer;
-}
-.mat-tooltip {
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  border-radius: 4px;
-  font-size: 14px;
-  padding: 20px;
-  font-size: 25px;
-}
+
+
 
 mat-icon {
   vertical-align: middle;

@@ -1,8 +1,6 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import { StoreModule, Store } from '@ngrx/store';
+import { StateObservable } from '@ngrx/store';
 import { NavbarComponent } from './navbar.component';
 
 describe('NavbarComponent', () => {
@@ -11,9 +9,15 @@ describe('NavbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavbarComponent ]
-    })
-    .compileComponents();
+      declarations: [NavbarComponent],
+      imports: [
+        StoreModule.forRoot({}) // You can replace this with your actual store configuration
+      ],
+      providers: [
+        { provide: StateObservable, useClass: StateObservable },
+        Store 
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

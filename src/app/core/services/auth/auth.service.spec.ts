@@ -1,19 +1,21 @@
-/* tslint:disable:no-unused-variable */
-
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
-import { usersReducer } from '../../reducers/users.reducers';
 import { AuthService } from './auth.service';
 
-describe('Service: Auth', () => {
+describe('AuthService', () => {
+  let service: AuthService;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AuthService],
-      imports: [StoreModule.forFeature('users', usersReducer )]
+      imports: [
+        StoreModule.forRoot({}) // Set up the store module (replace with your actual store configuration)
+      ],
+      providers: [AuthService]
     });
+    service = TestBed.inject(AuthService); // Inject the AuthService
   });
 
-  it('should ...', inject([AuthService], (service: AuthService) => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
-  }));
+  });
 });
