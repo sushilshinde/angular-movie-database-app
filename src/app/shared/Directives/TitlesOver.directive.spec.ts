@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component,ElementRef, DebugElement, Renderer2 } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -46,5 +47,16 @@ describe('TitlesOverDirective', () => {
     fixture.detectChanges();
     const paragraphElement = paragraphDebugElement.nativeElement;
     expect(paragraphElement.style.color).toBe('white');
+=======
+/* tslint:disable:no-unused-variable */
+
+import { TestBed, async } from '@angular/core/testing';
+import { TitlesOverDirective } from './TitlesOver.directive';
+
+describe('Directive: TitlesOver', () => {
+  it('should create an instance', () => {
+    // const directive = new TitlesOverDirective();
+    // expect(directive).toBeTruthy();
+>>>>>>> aswathi_s
   });
 });

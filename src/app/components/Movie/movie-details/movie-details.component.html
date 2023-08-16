@@ -1,12 +1,13 @@
-<div class="container-fluid text-white" style="background-color: #032541">
+<div class="container-fluid text-white" >
   <div
     class="card d-flex flex-row detail-container text-white"
-    style="position: relative; background-color: #032541"
+
   >
     <button
       class="btn fav-icon"
       (click)="addToFavorite()"
       matTooltip="Add to favorite list"
+      *ngIf="activeUser"
     >
       <span>
         <mat-icon>favorite</mat-icon>
@@ -16,32 +17,30 @@
       class="card-img-left"
       [src]="movie?.poster_path"
       alt="Card image cap"
-      style="width: 300px; background-size: cover"
     />
-    <div class="card-body" style="margin-left: 50px">
+    <div class="card-body" >
       <a
         [routerLink]="['../']"
         class="btn btn-primary mb-3"
-        style="background-color: #535876"
         >Go Back</a
       >
-      <h3 class="card-title">{{ movie?.title }}</h3>
+      <h2 class="card-title">{{ movie?.title }}</h2>
       <div class="alert alert-dark" *ngIf="movie?.details?.tagline">
         {{ movie?.details?.tagline }}
       </div>
       <hr />
-      <h6>Released Date:</h6>
-      {{ releaseDate }}
+      <h3>Released Date:</h3>
+      {{ movie?.release_date | dateformat:'simple' }}
       <hr />
-      <h6>Duration:</h6>
+      <h3>Duration:</h3>
       {{ movie?.details?.runtime }} mins
       <hr />
-      <h6>Storyline:</h6>
+      <h3>Storyline:</h3>
       <p class="card-text">
         {{ movie?.overview }}
       </p>
       <hr />
-      <h6>Cast:</h6>
+      <h3>Cast:</h3>
       <div
         class="d-flex justify-content-start flex-wrap"
         *ngIf="movieActors && movieActors.length > 0"

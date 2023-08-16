@@ -21,14 +21,21 @@ import { SignupService } from './core/services/signup/signup.service';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MoviesModule } from './components/Movie/movies.module';
-import { DialogOverviewExample } from './components/Movie/movie-categories/category-select-dialog/category-select-dialog.component';
+import { GenreSelectDialog } from './components/Movie/movie-categories/category-select-dialog/category-select-dialog.component';
 import { MovieMyService } from './core/services/movie.service';
-import { DateFormatService } from './core/services/date-format.service';
 import { TitlesOverDirective } from './shared/Directives/TitlesOver.directive';
 import { MatTooltipModule } from '@angular/material/tooltip';
+<<<<<<< HEAD
 import { EffectsModule } from '@ngrx/effects';
 import { allmovieReducer } from './core/reducers/allMovies.reducer';
 import { MovieEffects } from './core/effects/allmovies.effects';
+=======
+import { FavoriteListComponent } from './components/favorite-list/favorite-list.component';
+import { MovieItemComponent } from './components/favorite-list/movie-item/movie-item.component';
+import { usersReducer } from './core/reducers/users.reducers';
+import { MatIconModule } from '@angular/material/icon';
+import { AuthGuard } from './core/guards/auth.guard';
+>>>>>>> aswathi_s
 
 @NgModule({
   declarations: [
@@ -44,22 +51,29 @@ import { MovieEffects } from './core/effects/allmovies.effects';
     SignupComponent,
     FooterComponent,
     TitlesOverDirective,
+    FavoriteListComponent,
+    MovieItemComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+<<<<<<< HEAD
     StoreModule.forRoot({ allmovies: allmovieReducer }),
     EffectsModule.forRoot([MovieEffects]),
 
+=======
+    StoreModule.forRoot({ allmovies: allMovieReducer, users: usersReducer }),
+>>>>>>> aswathi_s
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MoviesModule,
-    DialogOverviewExample,
     MatTooltipModule,
+    MatIconModule,
+    GenreSelectDialog
   ],
-  providers: [AuthService, SignupService, DateFormatService, MovieMyService],
+  providers: [AuthGuard, AuthService, SignupService, MovieMyService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

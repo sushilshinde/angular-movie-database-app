@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
+/* The MovieRatingComponent class is a TypeScript component that allows users to rate movies by
+displaying stars and emitting an event when the rating is updated. */
 @Component({
   selector: 'app-movie-rating',
   templateUrl: './movie-rating.component.html',
@@ -20,6 +22,11 @@ export class MovieRatingComponent {
       this.ratingArr.push(index);
     }
   }
+  /**
+   * The onClick function updates the rating if the component is editable and emits the updated rating.
+   * @param {number} rating - The rating parameter is a number that represents the selected rating
+   * value.
+   */
   onClick(rating:number) {
     if(this.editable) {
       this.rating = rating;
@@ -27,6 +34,13 @@ export class MovieRatingComponent {
     }
   }
 
+  /**
+   * The function returns 'star' if the rating is greater than or equal to the index + 1, otherwise it
+   * returns 'star_border'.
+   * @param {number} index - The index parameter is a number that represents the position of the icon
+   * in a list or array.
+   * @returns either 'star' or 'star_border' based on the condition.
+   */
   showIcon(index:number) {
     if (this.rating && this.rating >= index + 1) {
       return 'star';

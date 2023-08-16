@@ -13,6 +13,9 @@
     height: 500px;
     border-radius: 10px;
     margin: 3px;
+
+    width: 300px; 
+    background-size: cover;
 }
 .expand-icon{
     color: darkcyan;
@@ -22,6 +25,23 @@
     left: 50%;
     transform: translate(-50%, -50%);
     margin-top: 20px;
+}
+
+.container-fluid {
+    background-color: #032541
+}
+
+.card {
+    position: relative; 
+    background-color: #032541
+}
+
+.card-body {
+    margin-left: 50px
+}
+
+.btn-primary {
+    background-color: #535876;
 }
 
 .expand-icon > .mat-icon {
