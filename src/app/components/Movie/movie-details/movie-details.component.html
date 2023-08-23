@@ -1,36 +1,30 @@
-<div class="container-fluid text-white" >
-  <div
-    class="card d-flex flex-row detail-container text-white"
-
-  >
+<div class="container-fluid text-white">
+  <div class="card d-flex flex-row detail-container text-white">
     <button
       class="btn fav-icon"
       (click)="addToFavorite()"
       matTooltip="Add to favorite list"
-      *ngIf="activeUser"
+      *ngIf="activeUser && !addToFavoriteStatus"
     >
       <span>
         <mat-icon>favorite</mat-icon>
       </span>
     </button>
+
     <img
       class="card-img-left"
       [src]="movie?.poster_path"
       alt="Card image cap"
     />
-    <div class="card-body" >
-      <a
-        [routerLink]="['../']"
-        class="btn btn-primary mb-3"
-        >Go Back</a
-      >
+    <div class="card-body">
+      <a [routerLink]="['../']" class="btn btn-primary mb-3">Go Back</a>
       <h2 class="card-title">{{ movie?.title }}</h2>
       <div class="alert alert-dark" *ngIf="movie?.details?.tagline">
         {{ movie?.details?.tagline }}
       </div>
       <hr />
       <h3>Released Date:</h3>
-      {{ movie?.release_date | dateformat:'simple' }}
+      {{ movie?.release_date | dateformat : "simple" }}
       <hr />
       <h3>Duration:</h3>
       {{ movie?.details?.runtime }} mins

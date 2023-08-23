@@ -34,7 +34,7 @@ export class SignupComponent {
       const password = this.signupForm.value.password;
       this.signupService
         .signup(username, email, password)
-        .subscribe((success) => {
+        .subscribe((success:any) => {
           if (success) {
             this.router.navigate(['/login']);
           } else {

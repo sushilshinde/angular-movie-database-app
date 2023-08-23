@@ -10,8 +10,13 @@ export const updateActiveUser = createAction(
   '[users] update active user',
   props<{ user: User }>()
 );
+export const removeActiveUser = createAction('[users] remove active user');
 
 export const addToFavoriteList = createAction(
   '[users] add to my favorites',
   props<{ movieId: number | undefined }>()
+);
+export const RemoveToFavoriteList = createAction(
+  '[users] remove to my favorites',
+  props<{ movieId: number }>()
 );

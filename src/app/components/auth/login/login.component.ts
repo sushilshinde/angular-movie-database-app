@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import usersinfo from '../../../../assets/auth/users.json';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   loginForm: FormGroup;
 
   email: string = '';
@@ -37,6 +36,7 @@ export class LoginComponent implements OnInit {
       const password = this.loginForm.value.password;
       this.authservice.login(email, password).subscribe((isAuthenticate) => {
         //if user is authenticate redirect to home page
+        console.log('logincheck', isAuthenticate);
         if (isAuthenticate) {
           this.authservice.updateLoginStatus(true);
           this.router.navigate(['/home']);
@@ -46,14 +46,5 @@ export class LoginComponent implements OnInit {
         }
       });
     }
-  }
-  ngOnInit(): void {
-    const existData = localStorage.getItem('usersData');
-    if (!existData) {
-      localStorage.setItem('usersData', JSON.stringify(usersinfo.users));
-    }
-
-    //this used for local storage geeting data every time this components render
-    this.authservice.getLoginUserData();
   }
 }

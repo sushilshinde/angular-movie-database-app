@@ -1,51 +1,68 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { Subscription } from 'rxjs';
-import { User } from '../../core/interface/user.interface';
+import { Router } from '@angular/router';
+import { User } from 'src/app/core/interface/user.interface';
+import { UserDataService } from 'src/app/core/services/userData.service';
+import { Store } from '@ngrx/store';
+import { removeActiveUser } from 'src/app/core/actions/user.actions';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   userLoginStatus?: boolean;
-  loginUserDetails: any = null;
+  userData: User | null = null;
+  loginInfoSubscription: Subscription | undefined;
 
-  constructor(private authservice: AuthService) {
-    // Subscribe to the loginInfo$ observable from the AuthService to get the user login status.
-    // Whenever the login status changes, the value will be updated in this.userLoginStatus.
-    this.authservice.loginInfo$.subscribe((status) => {
-      this.userLoginStatus = status;
-      if (status) {
-        const userinfo = localStorage.getItem('user');
-        if (userinfo) {
-          this.loginUserDetails = JSON.parse(userinfo);
-          console.log('user', this.loginUserDetails);
-        }
-      }
-    });
-
-    // Initially, the userLoginStatus is undefined until the first value is emitted by the loginInfo$ observable.
-    // This console.log will show "undefined" in the console.
-    console.log(this.userLoginStatus);
-  }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private userDataService: UserDataService,
+    private store: Store
+  ) {}
 
   ngOnInit() {
-    // The ngOnInit lifecycle hook is called when the component is initialized.
-    // We can perform any necessary setup or actions here.
+    // Subscribe to user data changes
+    this.userDataService.userData$.subscribe((userData) => {
+      this.userData = userData;
+    });
+    // Subscribe to the loginInfo$ observable from the AuthService to get the user login status.
+    this.loginInfoSubscription = this.authService.loginInfo$.subscribe(
+      (status) => {
+        this.userLoginStatus = status;
+      }
+    );
+    const storedUser = localStorage.getItem('authenticationStatus');
+    if (storedUser === 'true') {
+      this.userLoginStatus = true;
+    } else {
+      this.userLoginStatus = false;
+    }
   }
 
   // Function to handle the user logout process.
   logout() {
     // Show an alert indicating successful logout.
     alert('Successfully logged out');
+    //remove active user info in ngrx store
+    this.store.dispatch(removeActiveUser());
+
+    this.authService.logout();
+    // Redirect to home page after logout if any service use remove
+    this.router.navigate(['/home']);
 
     // Call the updateLoginStatus function from the AuthService to update the login status to false.
     // This will trigger the userLoginStatus change in the whole application due to the subscription in the constructor.
-    this.authservice.updateLoginStatus(false);
+    this.authService.updateLoginStatus(false);
+  }
 
-    //removing the user data in local storage with name 'user'
-    localStorage.removeItem('user');
+  ngOnDestroy() {
+    // Unsubscribe from the loginInfo$ observable when the component is destroyed to prevent memory leaks.
+    if (this.loginInfoSubscription) {
+      this.loginInfoSubscription.unsubscribe();
+    }
   }
 }

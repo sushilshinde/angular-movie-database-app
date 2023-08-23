@@ -62,7 +62,7 @@
         </button>
         <button
           mat-icon-button
-          [matTooltip]="loginUserDetails.username"
+          [matTooltip]="userData?.username ?? 'welcome'"
           class="btn btn-dark text-white"
         >
           <mat-icon>account_circle</mat-icon>

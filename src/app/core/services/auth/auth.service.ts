@@ -3,6 +3,10 @@ import { Store } from '@ngrx/store';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { updateActiveUser } from '../../actions/user.actions';
 import { User } from '../../interface/user.interface';
+import { HttpClient } from '@angular/common/http';
+import { UserDataService } from '../userData.service';
+import { map, of, catchError } from 'rxjs';
+import { updateUsers } from '../../actions/user.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +16,16 @@ export class AuthService implements OnDestroy {
   private loginStatus = new BehaviorSubject<boolean>(false);
   public loginInfo$ = this.loginStatus.asObservable(); // Observable to track login status changes
   private isAuthenticatedValue: boolean = false; // Indicates if the user is authenticated or not
+  userKey?: string | null;
 
-  initialUserData: User[] = []; // Array to store user data initially fetched from local storage
-
-  constructor(private store: Store<{users: { activeUser: any }}>) {}
+  constructor(
+    private store: Store<{ users: { activeUser: any } }>,
+    private http: HttpClient,
+    private userDataService: UserDataService
+  ) {
+    // Check if the user is authenticated on initialization
+    this.isAuthenticatedValue = this.checkAuthenticationStatus();
+  }
 
   /**
    * The function `isActiveUser()` checks if the active user is currently active and returns a boolean
@@ -23,17 +33,17 @@ export class AuthService implements OnDestroy {
    * @returns The function `isActiveUser()` returns a boolean value indicating whether the user is
    * active or not.
    */
-  isActiveUser() : boolean{
+  isActiveUser(): boolean {
     let isActive: boolean = false;
-    this.activeUserSubscription = this.store.select('users').subscribe(userStore =>  {
-    //   console.log(userStore.activeUser?.username)
-      if(userStore.activeUser?.username) {
-        isActive = true
-      }else {
-        isActive = false
-      }
-    })
-    // console.log('user is inactive')
+    this.activeUserSubscription = this.store
+      .select('users')
+      .subscribe((userStore) => {
+        if (userStore.activeUser?.username) {
+          isActive = true;
+        } else {
+          isActive = false;
+        }
+      });
     return isActive;
   }
 
@@ -49,43 +59,85 @@ export class AuthService implements OnDestroy {
 
   // Method to perform the login action with provided email and password
   login(email: string, password: string): Observable<boolean> {
-    const matchingUsers = this.initialUserData.filter(
-      (user) => user.email === email && user.password === password
-    );
+    return this.http
+      .get('https://udemy-section-18-default-rtdb.firebaseio.com/.json')
+      .pipe(
+        map((data: any) => {
+          // Check if the user data is available on Firebase
+          if (data && data.users) {
+            const firebaseUsers: User[] = Object.values(data.users); // Convert object values to an array
+            localStorage.setItem('usersData', JSON.stringify(firebaseUsers));
+            this.store.dispatch(updateUsers({ users: firebaseUsers }));
 
-    if (matchingUsers.length > 0) {
-      // update state in for activeUser
-      this.store.dispatch(updateActiveUser({ user: matchingUsers[0] }))
-      //save the user data in local storage in name "user"
-      localStorage.setItem('user', JSON.stringify(matchingUsers[0]));
-      this.isAuthenticatedValue = true; // Set the user as authenticated
-      this.updateLoginStatus(true); // Update the login status
-      return new Observable<boolean>((observer) => {
-        observer.next(true); // Notify the observer with successful login
-        observer.complete();
-      });
-    }
+            const matchingFirebaseUser = firebaseUsers.find(
+              (user) => user.email === email && user.password === password
+            );
 
-    return new Observable<boolean>((observer) => {
-      observer.next(false); // Notify the observer with failed login attempt
-      observer.complete();
-    });
+            if (matchingFirebaseUser) {
+              //finding the userkey for put the data userkey as used used path
+              this.userKey = Object.keys(data.users).find(
+                (key) =>
+                  data.users[key].email === email &&
+                  data.users[key].password === password
+              );
+              //checking user key getting or not
+              if (this.userKey) {
+                localStorage.setItem('userkey', this.userKey);
+              }
+
+              localStorage.setItem(
+                'user',
+                JSON.stringify(matchingFirebaseUser)
+              );
+
+              this.userDataService.setUserData(matchingFirebaseUser);
+              // update state for activeUser
+              this.store.dispatch(
+                updateActiveUser({ user: matchingFirebaseUser })
+              );
+
+              this.isAuthenticatedValue = true; // Set the user as authenticated
+              this.updateLoginStatus(true); // Update the login status
+              // Store authentication status in localStorage
+              this.storeAuthenticationStatus(true);
+
+              return true; // Successful login
+            }
+          }
+
+          // Failed login
+          return false;
+        }),
+        catchError((error) => {
+          console.error('Error fetching Firebase data:', error);
+          return of(false); // Failed login
+        })
+      );
   }
 
   // Method to perform user logout
   logout(): void {
     this.isAuthenticatedValue = false; // Set the user as not authenticated
-  }
+    this.updateLoginStatus(false);
 
-  // Method to get login user data from local storage
-  getLoginUserData() {
-    const dataString = localStorage.getItem('usersData');
-    if (dataString) {
-      this.initialUserData = JSON.parse(dataString); // Parse and store user data from local storage
-    }
+    // Remove authentication status from localStorage
+    this.storeAuthenticationStatus(false);
+    //remove user info in localStorage
+    localStorage.removeItem('user');
+    localStorage.removeItem('userkey');
   }
 
   ngOnDestroy(): void {
-    this.activeUserSubscription?.unsubscribe()
+    this.activeUserSubscription?.unsubscribe();
+  }
+  private checkAuthenticationStatus(): boolean {
+    // Check if authentication status is stored in localStorage
+    const storedStatus = localStorage.getItem('authenticationStatus');
+    return storedStatus === 'true';
+  }
+
+  private storeAuthenticationStatus(status: boolean) {
+    // Store authentication status in localStorage
+    localStorage.setItem('authenticationStatus', status.toString());
   }
 }
