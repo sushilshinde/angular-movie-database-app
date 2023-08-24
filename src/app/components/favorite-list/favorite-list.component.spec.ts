@@ -5,6 +5,8 @@ import { allMovieReducer } from 'src/app/core/reducers/allMovies.reducer';
 import { usersReducer } from 'src/app/core/reducers/users.reducers';
 
 import { FavoriteListComponent } from './favorite-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 describe('FavoriteListComponent', () => {
   let component: FavoriteListComponent;
@@ -13,7 +15,15 @@ describe('FavoriteListComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [FavoriteListComponent],
-      imports: [StoreModule.forRoot({ 'allmovies': allMovieReducer, 'users': usersReducer }), RouterTestingModule]
+      imports: [
+        HttpClientModule,
+        StoreModule.forRoot({
+          allmovies: allMovieReducer,
+          users: usersReducer,
+        }),
+        RouterTestingModule,
+      ],
+      providers:[MatSnackBar]
     });
     fixture = TestBed.createComponent(FavoriteListComponent);
     component = fixture.componentInstance;

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, take, takeUntil } from 'rxjs';
 import { RemoveToFavoriteList } from 'src/app/core/actions/user.actions';
 import { MovieDetailsModel } from 'src/app/core/interface/movie.interface';
 import { User } from 'src/app/core/interface/user.interface';
@@ -19,6 +19,7 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
   user?: User;
   userStoreSubscription?: Subscription;
   movieStoreSubscripption?: Subscription;
+  private destroy$ = new Subject<void>();
 
   constructor(
     private store: Store<{
@@ -32,6 +33,7 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userStoreSubscription = this.store
       .select('users')
+      .pipe(takeUntil(this.destroy$))
       .subscribe((userStore) => {
         let movieIds = userStore.activeUser?.favorite_list || [];
 
@@ -56,26 +58,29 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
     );
     //getting the key form local storage
     const userkey = localStorage.getItem('userkey');
-    this.store.select('users').subscribe({
-      next: (data) => {
-        console.log('checking activer user data', data.activeUser);
-        if (data) {
-          this.http
-            .put(
-              `https://udemy-section-18-default-rtdb.firebaseio.com/users/${userkey}.json`,
-              data.activeUser
-            )
-            .subscribe({
-              next: (res) => {
-                console.log('put data response', res);
-              },
-            });
-        }
-      },
-      error: (error) => {
-        console.log('movies not updated');
-      },
-    });
+    this.store
+      .select('users')
+      .pipe(take(1), takeUntil(this.destroy$))
+      .subscribe({
+        next: (data) => {
+          console.log('checking activer user data', data.activeUser);
+          if (data) {
+            this.http
+              .put(
+                `https://udemy-section-18-default-rtdb.firebaseio.com/users/${userkey}.json`,
+                data.activeUser
+              )
+              .subscribe({
+                next: (res) => {
+                  console.log('put data response', res);
+                },
+              });
+          }
+        },
+        error: (error) => {
+          console.log('movies not updated');
+        },
+      });
 
     this.snackBar.open('Remove to you favorite items!', 'OK!', {
       duration: 2000,
@@ -85,7 +90,7 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.userStoreSubscription?.unsubscribe();
-    this.movieStoreSubscripption?.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

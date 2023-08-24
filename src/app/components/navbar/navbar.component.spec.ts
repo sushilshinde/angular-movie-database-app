@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule, Store } from '@ngrx/store';
 import { StateObservable } from '@ngrx/store';
 import { NavbarComponent } from './navbar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -11,6 +12,7 @@ describe('NavbarComponent', () => {
     TestBed.configureTestingModule({
       declarations: [NavbarComponent],
       imports: [
+        HttpClientModule,
         StoreModule.forRoot({}) // You can replace this with your actual store configuration
       ],
       providers: [
