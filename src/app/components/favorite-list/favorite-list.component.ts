@@ -33,7 +33,6 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userStoreSubscription = this.store
       .select('users')
-      .pipe(takeUntil(this.destroy$))
       .subscribe((userStore) => {
         let movieIds = userStore.activeUser?.favorite_list || [];
 
@@ -90,7 +89,7 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
+    this.userStoreSubscription?.unsubscribe();
+    this.movieStoreSubscripption?.unsubscribe();
   }
 }
