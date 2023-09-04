@@ -10,8 +10,8 @@ displaying stars and emitting an event when the rating is updated. */
 export class MovieRatingComponent {
   @Input() editable: boolean = false;
   @Input('rating') rating?: number = 1;
-  @Input('starCount') private starCount: number = 5;
-  @Output() private ratingUpdated = new EventEmitter();
+  @Input('starCount') starCount: number = 5;
+  @Output() ratingUpdated = new EventEmitter();
   @Input('color') color: string = 'accent';
 
   ratingArr: number[] = [];
