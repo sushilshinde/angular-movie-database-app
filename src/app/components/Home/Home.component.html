@@ -12,18 +12,19 @@
       type="search"
       placeholder="Search"
       aria-label="Search"
+      name="sereachText"
+      [(ngModel)]="sereachText"
     />
     <a
-      routerLink="/search"
       class="btn btn-outline-success my-2 my-sm-0"
       type="submit"
+      (click)="sreachRouting()"
       >Search</a
     >
   </div>
 </div>
 <!--sort option and heading-->
 <div class="home_sort_container">
-
   <div class="home_sort_optionsontainer">
     <genre-select-dialog></genre-select-dialog>
     <h1 class="home_sort_heading">Sort</h1>
@@ -47,12 +48,12 @@
     (click)="changeRouting(movie.id, movie.media_type)"
     *ngFor="let movie of allmovies | movieSort : sortMethod"
   >
-    <div class="movie_image_container" >
+    <div class="movie_image_container">
       <img
-      class="movie-image"
-      [src]="movie?.poster_path"
-      alt="Card image cap"
-    />
+        class="movie-image"
+        [src]="movie?.poster_path"
+        alt="Card image cap"
+      />
     </div>
 
     <div class="movie-card-body">

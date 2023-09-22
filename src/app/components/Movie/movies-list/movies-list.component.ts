@@ -1,3 +1,8 @@
+/**
+ * File: movie-list.component.ts
+ * Author: Venkateswara Rao samineni
+ * Description: This Componet Apper with Route `movies` and display the movies.
+ */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MovieMyService } from 'src/app/core/services/movie.service';
 import { Subscription, throwError } from 'rxjs';
