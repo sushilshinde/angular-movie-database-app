@@ -91,5 +91,7 @@ export class FavoriteListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.userStoreSubscription?.unsubscribe();
     this.movieStoreSubscripption?.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

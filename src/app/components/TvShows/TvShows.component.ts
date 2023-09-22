@@ -1,3 +1,8 @@
+/**
+ * File: TvShows.component.ts
+ * Author: Venkateswara Rao samineni
+ * Description: This Componet Apper with Route `tv` and display the Tv shows.
+ */
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MovieMyService } from '../../core/services/movie.service';
 import { Movie } from '../../core/interface/movies.interface';
@@ -12,7 +17,7 @@ import { Subscription } from 'rxjs';
 export class TvShowsComponent implements OnInit, OnDestroy {
   // Array to store TV show data
   tvdata: Movie[] = [];
-  private subscription?: Subscription;
+    private subscription?: Subscription;
 
   // Inject the MovieMyService and Router into the component
   constructor(private movieService: MovieMyService, private router: Router) {}

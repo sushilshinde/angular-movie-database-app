@@ -1,8 +1,14 @@
+/**
+ * File: search.component.ts
+ * Author: Venkateswara Rao samineni
+ * Description:In this componet show the resuluts of serach and hanlde Resulut messages and sort method 
+ */
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Movie } from 'src/app/core/interface/movies.interface';
 import { MovieMyService } from 'src/app/core/services/movie.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { SearchService } from 'src/app/core/services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -26,10 +32,14 @@ export class SearchComponent implements OnInit, OnDestroy {
   constructor(
     private movieService: MovieMyService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private searchSerive: SearchService
   ) {}
 
   ngOnInit() {
+    //getting entered text
+    this.SearchText = this.searchSerive.getData();
+
     // Fetch movies from the service when the component initializes
     this.subscription = this.movieService.getMovies().subscribe({
       next: (data) => {
@@ -56,13 +66,14 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   // Function to handle the search form submission
   onSubmitSearch() {
+    console.log('button cliked');
     // Filter the movie database based on the search text
     this.searchResult = this.MovieDatabase.filter((each) =>
       each.title.toLowerCase().includes(this.SearchText?.trim().toLowerCase())
     );
 
-    // If search results are found, update the loading indicator
-    if (this.searchResult.length !== 0) {
+    // If search results are not found, update the loading indicator
+    if (this.searchResult.length === 0) {
       this.loading = false;
     }
 
