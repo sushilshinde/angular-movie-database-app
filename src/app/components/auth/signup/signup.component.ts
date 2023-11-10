@@ -16,10 +16,7 @@ import { SignupService } from 'src/app/core/services/signup/signup.service';
 })
 export class SignupComponent {
   signupForm: FormGroup;
-  username: string = '';
-  email: string = '';
-  password: string = '';
-
+ 
   constructor(
     private signupService: SignupService,
     private router: Router,
